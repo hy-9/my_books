@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity_Site"
+    android:background="@color/grey">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/site_to"
+        android:background="@color/white">
+        <!--            返回图标-->
+        <ImageView
+            android:id="@+id/site_fh"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="5dp"
+            android:src="@drawable/fan_huei" />
+        <!--                顶部导航栏中的文字-->
+        <TextView
+            android:id="@+id/site_Xs"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:layout_marginTop="3dp"
+            android:layout_toRightOf="@id/site_fh"
+            android:layout_toLeftOf="@id/site_add"
+            android:gravity="center"
+            android:text="书架详情"
+            android:textColor="@color/black"
+            android:textSize="30dp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/site_add"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="7dp"
+            android:layout_marginRight="20dp"
+            android:src="@drawable/add" />
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/site_lv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/site_set"
+        android:layout_below="@id/site_to"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="5dp"
+        android:background="@color/white" />
+
+    <RelativeLayout
+        android:id="@+id/site_set"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true">
+
+        <TextView
+            android:id="@+id/site_set_qx"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:text="取消"
+            android:textColor="@color/black"
+            android:textSize="25dp" />
+
+        <TextView
+            android:id="@+id/site_set_ren"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="重命名"
+            android:textColor="@color/black"
+            android:textSize="25dp" />
+
+        <ImageView
+            android:id="@+id/site_site_more"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="15dp"
+            android:src="@drawable/more" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/site_more"
+        android:layout_width="155dp"
+        android:layout_height="73dp"
+        android:layout_above="@id/site_set"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="5dp"
+        android:background="@color/grey">
+
+        <ImageView
+            android:id="@+id/site_set_1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/grey_1" />
+
+        <ImageView
+            android:id="@+id/site_set_4"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/grey_1" />
+
+        <ImageView
+            android:id="@+id/site_set_5"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:background="@color/grey_1" />
+
+        <TextView
+            android:id="@+id/site_set_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_below="@id/site_set_1"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"
+            android:text="删除书架"
+            android:textColor="@color/black"
+            android:textSize="25dp" />
+
+        <ImageView
+            android:id="@+id/site_set_2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/site_set_delete"
+            android:background="@color/grey_1" />
+
+        <TextView
+            android:id="@+id/site_set_move"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_below="@id/site_set_2"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"
+            android:text="批量移动至"
+            android:textColor="@color/black"
+            android:textSize="25dp" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/site_set_move"
+            android:background="@color/grey_1" />
+    </RelativeLayout>
+</RelativeLayout>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="75dp"
+    android:background="@color/white"
+    >
+    <!--    ListView的模板-->
+    <ImageView
+        android:id="@+id/book_background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white" />
+   <ImageView
+       android:id="@+id/book_like"
+       android:layout_width="35dp"
+       android:layout_height="35dp"
+       android:src="@drawable/like_pitch"
+       android:layout_marginLeft="10dp"
+       android:layout_toRightOf="@id/mb_sm"/>
+    <!--    模板中的书名-->
+    <TextView
+        android:id="@+id/mb_sm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_toRightOf="@id/mb_tb"
+        android:text="书名"
+        android:textColor="@color/black"
+        android:textSize="20dp" />
+    <!--    模板中的作者-->
+    <TextView
+        android:id="@+id/mb_zz"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/mb_sm"
+        android:layout_alignLeft="@id/mb_sm"
+        android:text="作者"
+        android:textColor="@color/black"
+        android:textSize="16dp" />
+    <!--    模板中的国籍-->
+    <TextView
+        android:id="@+id/mb_gj"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/mb_zz"
+        android:layout_marginLeft="15dp"
+        android:layout_toRightOf="@id/mb_zz"
+        android:text="国籍"
+        android:textColor="#404040"
+        android:textSize="13dp" />
+    <!--    模板中的类别-->
+    <TextView
+        android:id="@+id/mb_lb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/mb_sm"
+        android:layout_alignParentRight="true"
+        android:layout_marginEnd="10dp"
+        android:text="类别"
+        android:textColor="@color/black"
+        android:textSize="18dp" />
+    <!--    模板中的存放地-->
+    <TextView
+        android:id="@+id/mb_cfd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/mb_lb"
+        android:layout_marginTop="13dp"
+        android:layout_marginRight="25dp"
+        android:layout_toLeftOf="@id/mb_date"
+        android:text="地址"
+        android:textSize="16dp" />
+    <TextView
+        android:id="@+id/mb_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/mb_lb"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="13dp"
+        android:layout_marginEnd="15dp"
+        android:text="日期"
+        android:textSize="16dp" />
+    <!--    模板中的备注-->
+    <TextView
+        android:id="@+id/mb_bz"
+        android:layout_width="150dp"
+        android:layout_height="16dp"
+        android:layout_below="@id/mb_zz"
+        android:layout_alignLeft="@id/mb_zz"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="15dp"
+        android:text="备注"
+        android:textSize="12dp" />
+    <!--    模板中的图标-->
+    <ImageView
+        android:id="@+id/mb_tb"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="10dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/kh" />
+</RelativeLayout>

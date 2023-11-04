@@ -1,0 +1,552 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity_Search">
+    <!--            用于装顶部导航栏中的物体，话说为什么不直接用这个。。。-->
+    <RelativeLayout
+        android:id="@+id/search_1"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <!--            返回图标-->
+        <ImageView
+            android:id="@+id/search_fh"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="5dp"
+            android:src="@drawable/fan_huei" />
+        <!--                顶部导航栏中的文字-->
+        <TextView
+            android:id="@+id/search_Xs"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:layout_marginTop="3dp"
+            android:gravity="center"
+            android:text="检索"
+            android:textColor="@color/black"
+            android:textSize="30dp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+    <ImageView
+        android:layout_below="@id/search_1"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:id="@+id/search_fgx_1"
+        android:background="@color/grey"/>
+
+    <RelativeLayout
+        android:id="@+id/search_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/search_fgx_1">
+
+        <RelativeLayout
+            android:id="@+id/search_2_1"
+            android:layout_width="match_parent"
+            android:layout_height="55dp">
+
+            <EditText
+                android:id="@+id/search_2_ET"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="10dp"
+                android:layout_toLeftOf="@id/search_2_search"
+                android:hint="检索内容" />
+
+            <ImageView
+                android:id="@+id/search_2_search"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:src="@drawable/searching" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/search_2_2"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:background="@color/grey">
+            <!--            多选模式下的取消-->
+            <TextView
+                android:id="@+id/search_2_2_choose_quxiao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="15dp"
+                android:text="取消"
+                android:textColor="@color/black"
+                android:textSize="25dp" />
+            <!--           多选模式下的选择数 -->
+            <TextView
+                android:id="@+id/search_2_2_choose_xzs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:textColor="@color/black"
+                android:textSize="25dp"
+                android:text="已选择0本"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/search_2_3"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@id/search_2_1"
+            >
+
+            <TextView
+                android:id="@+id/search_2_3_sort"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="15dp"
+                android:text="排序方式"
+                android:textColor="@color/black"
+                android:textSize="25dp" />
+            <!--        存放地下拉框-->
+            <Spinner
+                android:id="@+id/search_2_3_sort_sp"
+                android:layout_width="135dp"
+                android:layout_height="45dp"
+                android:layout_alignParentBottom="true"
+                android:layout_toRightOf="@id/search_2_3_sort" />
+
+            <TextView
+                android:id="@+id/screen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="15dp"
+                android:text="筛选"
+                android:textColor="@color/black"
+                android:textSize="25dp" />
+        </RelativeLayout>
+    </RelativeLayout>
+    <ImageView
+        android:layout_below="@id/search_2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:id="@+id/search_fgx_2"
+        android:background="@color/grey"/>
+    <!--    书的信息-->
+    <ListView
+        android:id="@+id/search_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/search_fgx_2"
+        android:background="@color/white"
+        android:layout_above="@id/search_4"
+        ></ListView>
+    <RelativeLayout
+        android:id="@+id/search_4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/grey">
+
+        <ImageView
+            android:id="@+id/search_4_all"
+            android:layout_width="30dp"
+            android:layout_height="50dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="40dp"
+            android:src="@drawable/choose" />
+
+        <ImageView
+            android:id="@+id/search_4_sc"
+            android:layout_width="40dp"
+            android:layout_height="50dp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/sc" />
+        <ImageView
+            android:id="@+id/search_4_more"
+            android:layout_width="40dp"
+            android:layout_height="50dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="15dp"
+            android:src="@drawable/more" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/site_more"
+        android:layout_width="155dp"
+        android:layout_height="73dp"
+        android:layout_above="@id/search_4"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="5dp"
+        android:background="@color/grey">
+
+        <ImageView
+            android:id="@+id/site_set_1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/grey_1" />
+
+        <ImageView
+            android:id="@+id/site_set_4"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/grey_1" />
+
+        <ImageView
+            android:id="@+id/site_set_5"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:background="@color/grey_1" />
+
+        <TextView
+            android:id="@+id/site_set_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_below="@id/site_set_1"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"
+            android:text="收藏选中"
+            android:textColor="@color/black"
+            android:textSize="25dp" />
+
+        <ImageView
+            android:id="@+id/site_set_2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/site_set_delete"
+            android:background="@color/grey_1" />
+
+        <TextView
+            android:id="@+id/site_set_move"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_below="@id/site_set_2"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"
+            android:text="批量移动至"
+            android:textColor="@color/black"
+            android:textSize="25dp" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/site_set_move"
+            android:background="@color/grey_1" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/search_5"
+        android:layout_alignParentBottom="true"
+        android:background="#D5787878"
+        >
+
+        <RelativeLayout
+            android:id="@+id/search_tc"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/search"
+            android:layout_alignParentTop="true" />
+        <RelativeLayout
+            android:id="@+id/search"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:id="@+id/search_5_top"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:background="@drawable/yuan_jiao_top">
+
+                <TextView
+                    android:id="@+id/search_5_top_x"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="5dp"
+                    android:text="x"
+                    android:textColor="@color/black"
+                    android:textSize="25dp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/search_5_scope"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/search_5_top"
+                android:background="@color/white">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginRight="5dp"
+                    android:background="@color/black" />
+
+                <TextView
+                    android:layout_width="140dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="20dp"
+                    android:text="检索范围"
+                    android:textColor="@color/black"
+                    android:textSize="30dp" />
+
+                <TextView
+                    android:id="@+id/Sscope_all"
+                    android:layout_width="60dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="27dp"
+                    android:layout_marginRight="15dp"
+                    android:text="全选"
+                    android:textSize="25dp" />
+
+                <ImageView
+                    android:id="@+id/search_5_fgx_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="60dp"
+                    android:layout_marginRight="25dp"
+                    android:background="@color/grey_1" />
+
+                <LinearLayout
+                    android:id="@+id/scope_CBs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/search_5_fgx_1"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:orientation="horizontal">
+
+                    <CheckBox
+                        android:id="@+id/scope_CB_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="书名"
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
+
+                    <CheckBox
+                        android:id="@+id/scope_CB_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="作者"
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
+
+                    <CheckBox
+                        android:id="@+id/scope_CB_3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="国籍"
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
+
+                    <CheckBox
+                        android:id="@+id/scope_CB_4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="备注"
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:id="@+id/king"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/scope_CBs">
+
+                    <TextView
+                        android:layout_width="140dp"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="13dp"
+                        android:text="种类"
+                        android:textColor="@color/black"
+                        android:textSize="30dp" />
+
+                    <TextView
+                        android:id="@+id/Sking_all"
+                        android:layout_width="60dp"
+                        android:layout_height="30dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="22dp"
+                        android:layout_marginRight="15dp"
+                        android:text="全选"
+                        android:textSize="25dp" />
+
+                    <ImageView
+                        android:id="@+id/search_5_fgx_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="25dp"
+                        android:layout_marginTop="55dp"
+                        android:layout_marginRight="25dp"
+                        android:background="@color/grey_1" />
+
+                    <LinearLayout
+                        android:id="@+id/king_CBs_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/search_5_fgx_2"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:orientation="horizontal">
+
+                        <CheckBox
+                            android:id="@+id/king_CB_1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="小说"
+                            android:textSize="20dp"
+                            android:textStyle="bold" />
+
+                        <CheckBox
+                            android:id="@+id/king_CB_2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="名著"
+                            android:textSize="20dp"
+                            android:textStyle="bold" />
+
+                        <CheckBox
+                            android:id="@+id/king_CB_3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="科幻"
+                            android:textSize="20dp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/king_CBs_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/king_CBs_1"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:orientation="horizontal">
+
+                        <CheckBox
+                            android:id="@+id/king_CB_4"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="知识"
+                            android:textSize="20dp"
+                            android:textStyle="bold" />
+
+                        <CheckBox
+                            android:id="@+id/king_CB_5"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="历史"
+                            android:textSize="20dp"
+                            android:textStyle="bold" />
+
+                        <CheckBox
+                            android:id="@+id/king_CB_6"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="哲学"
+                            android:textSize="20dp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/site"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/king">
+
+                    <TextView
+                        android:layout_width="140dp"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="13dp"
+                        android:text="书架"
+                        android:textColor="@color/black"
+                        android:textSize="30dp" />
+
+                    <TextView
+                        android:id="@+id/Ssite_all"
+                        android:layout_width="60dp"
+                        android:layout_height="30dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="22dp"
+                        android:layout_marginRight="15dp"
+                        android:text="全选"
+                        android:textSize="25dp" />
+
+                    <ImageView
+                        android:id="@+id/search_5_fgx_3"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="25dp"
+                        android:layout_marginTop="55dp"
+                        android:layout_marginRight="25dp"
+                        android:background="@color/grey_1" />
+
+                    <ListView
+                        android:id="@+id/siteLV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="250dp"
+                        android:layout_below="@id/search_5_fgx_3"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp" />
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/like"
+                    android:layout_width="180dp"
+                    android:layout_height="50dp"
+                    android:layout_below="@id/site"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/yuan_jiao_g"
+                    android:gravity="center"
+                    android:text="仅显示收藏"
+                    android:textColor="@color/black"
+                    android:textSize="30dp" />
+
+                <TextView
+                    android:id="@+id/submit"
+                    android:layout_width="180dp"
+                    android:layout_height="50dp"
+                    android:layout_below="@id/site"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@drawable/yuan_jiao_blue"
+                    android:gravity="center"
+                    android:text="确认"
+                    android:textColor="@color/black"
+                    android:textSize="30dp" />
+            </RelativeLayout>
+        </RelativeLayout>
+    </RelativeLayout>
+</RelativeLayout>

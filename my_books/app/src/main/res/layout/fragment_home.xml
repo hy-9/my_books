@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".homeFragment"
+    android:background="@color/grey">
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/home_register"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="点击登录"
+            android:textSize="25dp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+    <!--        主页导航栏的分隔线-->
+    <ImageView
+        android:id="@+id/Zhu_tofgx"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:src="@color/grey_1"
+        android:orientation="horizontal"
+        ></ImageView>
+
+    <RelativeLayout
+        android:id="@+id/Zhu_searching"
+        android:layout_width="match_parent"
+        android:layout_height="55dp">
+
+
+        <EditText
+            android:id="@+id/zhu_ed"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="10dp"
+            android:layout_toLeftOf="@id/Zhu_searching_im"
+            android:hint="检索内容" />
+
+        <ImageView
+            android:id="@+id/Zhu_searching_im"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/searching" />
+    </RelativeLayout>
+    <!--    主页的详情框-->
+    <RelativeLayout
+        android:id="@+id/Zhu_xq"
+        android:layout_width="match_parent"
+        android:layout_height="175dp"
+        android:layout_below="@id/Zhu_searching"
+        android:background="@color/white">
+        <!--        详情框中的图片-->
+        <ImageView
+            android:id="@+id/Zhu_xq_tp"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:src="@drawable/sj_zhu_dt_tb" />
+        <!--        总书量-->
+        <TextView
+            android:id="@+id/Zhu_zhongshuliang"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="总藏书："
+            android:textSize="25dp"
+            android:textStyle="bold" />
+        <!--        总书量的数-->
+        <TextView
+            android:id="@+id/Zhu_zhongshuliang_s"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@id/Zhu_zhongshuliang"
+            android:text="0"
+            android:textSize="25dp"
+            android:textStyle="bold" />
+        <!--        小说-->
+        <TextView
+            android:id="@+id/Zhu_xs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/Zhu_mz_s"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="5dp"
+            android:text="小说"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+        <!--        小说的数-->
+        <TextView
+            android:id="@+id/Zhu_xs_s"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="43dp"
+            android:layout_toRightOf="@id/Zhu_xs"
+            android:text="0"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+        <!--        名著-->
+        <TextView
+            android:id="@+id/Zhu_mz"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/Zhu_mz_s"
+            android:layout_marginRight="5dp"
+            android:layout_toLeftOf="@id/Zhu_mz_s"
+            android:text="名著"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+        <!--        名著的数-->
+        <TextView
+            android:id="@+id/Zhu_mz_s"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="43dp"
+            android:layout_marginRight="15dp"
+            android:layout_toLeftOf="@id/Zhu_xq_tp"
+            android:text="0"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+        <!--        科幻-->
+        <TextView
+            android:id="@+id/Zhu_kh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/Zhu_kh_s"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="5dp"
+            android:text="科幻"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+        <!--        科幻的数-->
+        <TextView
+            android:id="@+id/Zhu_kh_s"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/Zhu_zs"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@id/Zhu_kh"
+            android:text="0"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+        <!--        知识-->
+        <TextView
+            android:id="@+id/Zhu_zs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/Zhu_zs_s"
+            android:layout_marginRight="5dp"
+            android:layout_toLeftOf="@id/Zhu_zs_s"
+            android:text="知识"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+        <!--        知识的数-->
+        <TextView
+            android:id="@+id/Zhu_zs_s"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/Zhu_mz_s"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="18dp"
+            android:layout_marginRight="15dp"
+            android:layout_toLeftOf="@id/Zhu_xq_tp"
+            android:text="0"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+        <!--        历史-->
+        <TextView
+            android:id="@+id/Zhu_ls"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/Zhu_ls_s"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="5dp"
+            android:text="历史"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+        <!--        历史的数-->
+        <TextView
+            android:id="@+id/Zhu_ls_s"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/Zhu_zx"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="60dp"
+            android:layout_toRightOf="@id/Zhu_ls"
+            android:text="0"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+        <!--        哲学-->
+        <TextView
+            android:id="@+id/Zhu_zx"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/Zhu_zx_s"
+            android:layout_marginRight="5dp"
+            android:layout_toLeftOf="@id/Zhu_zx_s"
+            android:text="哲学"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+        <!--        哲学的数-->
+        <TextView
+            android:id="@+id/Zhu_zx_s"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/Zhu_zs_s"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="18dp"
+            android:layout_marginRight="15dp"
+            android:layout_toLeftOf="@id/Zhu_xq_tp"
+            android:text="0"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/Zhu_choose_tips"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="@color/grey">
+        <!--            多选模式下的取消-->
+        <TextView
+            android:id="@+id/Zhu_choose_tips_quxiao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:text="取消"
+            android:textColor="@color/black"
+            android:textSize="25dp" />
+        <!--           多选模式下的选择数 -->
+        <TextView
+            android:id="@+id/Zhu_choose_tips_xzs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColor="@color/black"
+            android:textSize="25dp" />
+    </RelativeLayout>
+    <!--        主页详情的分隔线-->
+    <RelativeLayout
+        android:id="@+id/Zhu_xqfgx"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/Zhu_xq"
+        android:background="@color/grey"
+        android:orientation="horizontal"></RelativeLayout>
+    <!--    书的信息-->
+    <ListView
+        android:id="@+id/Zhu_shu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/Zhu_choose"
+        android:layout_below="@id/Zhu_xqfgx"
+        android:background="@color/white" />
+
+    <RelativeLayout
+        android:id="@+id/Zhu_choose"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/grey">
+
+        <ImageView
+            android:id="@+id/Zhu_choose_all"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="40dp"
+            android:src="@drawable/choose" />
+
+        <ImageView
+            android:id="@+id/Zhu_choose_sc"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/sc" />
+    </RelativeLayout>
+    <!--    添加书籍按钮-->
+    <ImageView
+        android:id="@+id/Zhu_tj"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="50dp"
+        android:layout_marginBottom="60dp"
+        android:src="@drawable/sj_tianjia" />
+
+
+</RelativeLayout>
+
+<!--    android:layout_alignParentBottom="true"-->
+<!--    android:visibility="gone"-->

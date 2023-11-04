@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+    <RelativeLayout
+        android:id="@+id/my_order"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/grey">
+
+        <ImageView
+            android:id="@+id/my_yh_tp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="40dp"
+            android:src="@drawable/my_book_0" />
+
+        <TextView
+            android:id="@+id/my_yhm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="60dp"
+            android:layout_toRightOf="@id/my_yh_tp"
+            android:text="点击登录"
+            android:textSize="40dp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/my_yh_fgx"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/my_order"
+        android:src="@color/black"
+        />
+    <!--中间内容部分-->
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/mian_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        >
+    </androidx.viewpager.widget.ViewPager>
+    <!--底部导航栏-->
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:gravity="center">
+        <LinearLayout
+            android:id="@+id/id_tab1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            >
+            <ImageButton
+                android:id="@+id/id_tab_img1"
+                android:clickable="false"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/home"
+                android:background="@color/white"
+                android:layout_marginBottom="5dp"
+                />
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/id_tab2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+            <ImageButton
+                android:id="@+id/id_tab_img2"
+                android:clickable="false"
+                android:layout_width="wrap_content"
+                android:layout_height="65dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/my"
+                android:background="@color/white"/>
+
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

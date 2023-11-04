@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity_register">
+
+    <ImageView
+        android:id="@+id/register_fan_huei"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/fan_huei" />
+
+    <TextView
+        android:id="@+id/biao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/register_fan_huei"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:text="账号密码登录"
+        android:textColor="@color/black"
+        android:textSize="35dp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/register_yhm"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@id/register_fan_huei"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginRight="25dp"
+        android:hint="请输入用户名"
+        android:maxLength="16"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:textColorHint="@color/black" />
+
+    <EditText
+        android:id="@+id/register_mm"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@id/register_yhm"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="25dp"
+        android:hint="请输入密码"
+        android:inputType="textPassword"
+        android:maxLength="16"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:textColorHint="@color/black" />
+
+    <ImageView
+        android:id="@+id/register_kmm"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignRight="@id/register_mm"
+        android:layout_alignBottom="@id/register_mm"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="5dp"
+        android:src="@drawable/bi_yan" />
+
+    <TextView
+        android:id="@+id/register_dl"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@id/register_mm"
+        android:layout_marginLeft="55dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginRight="55dp"
+        android:background="@drawable/yuan_jiao_blue"
+        android:gravity="center"
+        android:text="登录"
+        android:textColor="@color/black"
+        android:textSize="30dp"
+        android:textStyle="bold" />
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/register_dl"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp">
+
+        <RadioButton
+            android:id="@+id/register_3"
+            android:layout_width="30dp"
+            android:layout_height="30dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/register_1"
+            android:text="我以阅读并同意"
+            android:textSize="16dp"
+            android:layout_toRightOf="@id/register_3"
+            android:layout_centerVertical="true"/>
+
+        <TextView
+            android:id="@+id/register_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/register_1"
+            android:text="《用户服务协议》"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/register_zhu_chei"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+        android:text="注册成为新用户"
+        android:textColor="@color/black"
+        android:textSize="20dp" />
+</RelativeLayout>

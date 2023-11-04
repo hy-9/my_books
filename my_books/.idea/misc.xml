@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Android/my_books/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.15925925925925927" />
+        <entry key="..\:/Android/my_books/app/src/main/res/drawable-v24/yuan_jiao_g.xml" value="0.16872964169381108" />
+        <entry key="..\:/Android/my_books/app/src/main/res/drawable-v24/yuan_jiao_top.xml" value="0.16872964169381108" />
+        <entry key="..\:/Android/my_books/app/src/main/res/drawable/ic_launcher_background.xml" value="0.20462962962962963" />
+        <entry key="..\:/Android/my_books/app/src/main/res/drawable/yuan_jiao.xml" value="0.20462962962962963" />
+        <entry key="..\:/Android/my_books/app/src/main/res/drawable/yuan_jiao_blue.xml" value="0.15960912052117263" />
+        <entry key="..\:/Android/my_books/app/src/main/res/layout/activity_book_particulars.xml" value="0.2" />
+        <entry key="..\:/Android/my_books/app/src/main/res/layout/activity_main.xml" value="0.17300724637681159" />
+        <entry key="..\:/Android/my_books/app/src/main/res/layout/activity_main2.xml" value="0.18579234972677597" />
+        <entry key="..\:/Android/my_books/app/src/main/res/layout/activity_register.xml" value="0.152" />
+        <entry key="..\:/Android/my_books/app/src/main/res/layout/activity_search.xml" value="0.176" />
+        <entry key="..\:/Android/my_books/app/src/main/res/layout/activity_site.xml" value="0.144" />
+        <entry key="..\:/Android/my_books/app/src/main/res/layout/book.xml" value="0.2" />
+        <entry key="..\:/Android/my_books/app/src/main/res/layout/fragment_home.xml" value="0.144" />
+        <entry key="..\:/Android/my_books/app/src/main/res/layout/fragment_my.xml" value="0.2" />
+        <entry key="..\:/Android/my_books/app/src/main/res/layout/site.xml" value="0.264" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
