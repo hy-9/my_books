@@ -1,0 +1,11 @@
+/.idea
+/my_books/*.iml
+/my_books/.gradle
+/my_books/local.properties
+/my_books/.idea
+/my_books/.DS_Store
+/my_books/build
+/my_books/captures
+/my_books/.externalNativeBuild
+/my_books/.cxx
+/my_books/local.properties
