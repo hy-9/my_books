@@ -85,7 +85,7 @@ public class Activity_register extends Activity {
                         //判断为登录还是注册界面
                         if (!p){//登录界面
                             List<user> yh = sql1.cxdl(db,yhm.getText()+"");
-                            if (yh.get(0).getPassword().equals(mm.getText()+"")){
+                            if (yh.size() != 0 && yh.get(0).getPassword().equals(mm.getText()+"")){
                                 Toast.makeText(getApplicationContext(), "用户"+yh.get(0).getUser_name()+"登录成功", Toast.LENGTH_LONG).show();
                                 sql1.gxbj(db,yh.get(0));
                                 finish();
