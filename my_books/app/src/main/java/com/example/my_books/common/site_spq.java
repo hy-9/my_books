@@ -1,4 +1,4 @@
-package com.example.my_books.sql;
+package com.example.my_books.common;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.example.my_books.R;
 import com.example.my_books.model.site;
+import com.example.my_books.model.site_ccq;
 
 import java.util.List;
 //书模板的适配器类

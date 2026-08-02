@@ -23,7 +23,7 @@ import com.example.my_books.activity.Activity_register;
 import com.example.my_books.R;
 import com.example.my_books.model.site;
 import com.example.my_books.model.user;
-import com.example.my_books.sql.site_spq;
+import com.example.my_books.common.site_spq;
 import com.example.my_books.sql.sql;
 
 import java.util.List;
