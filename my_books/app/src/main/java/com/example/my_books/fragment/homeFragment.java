@@ -1,4 +1,4 @@
-package com.example.my_books;
+package com.example.my_books.fragment;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -11,13 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.database.sqlite.SQLiteDatabase;
-import android.os.Bundle;
 
-import androidx.fragment.app.Fragment;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -25,6 +19,15 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.my_books.R;
+import com.example.my_books.activity.Activity_Book_Particulars;
+import com.example.my_books.activity.Activity_Search;
+import com.example.my_books.activity.Activity_register;
+import com.example.my_books.model.book;
+import com.example.my_books.model.site;
+import com.example.my_books.common.shu_spq;
+import com.example.my_books.sql.sql;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -108,7 +111,7 @@ public class homeFragment extends Fragment {
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(),Activity_register.class);
+                Intent intent = new Intent(getActivity(), Activity_register.class);
                 startActivity(intent);
             }
         });
@@ -118,7 +121,7 @@ public class homeFragment extends Fragment {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 book cshu=(book) adapterView.getItemAtPosition(i);//把点击的那条数据包装到cshu里
                 if (!Cpattern){
-                    Intent intent=new Intent(getContext(),Activity_Book_Particulars.class);//设置跳转
+                    Intent intent=new Intent(getContext(), Activity_Book_Particulars.class);//设置跳转
                     //把数据传递   String book_name,String author,String nationality,int king,String comment,
                     //              int site,String date,int like
 
@@ -216,7 +219,7 @@ public class homeFragment extends Fragment {
         searching.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(getContext(),Activity_Search.class);//设置跳转
+                Intent intent=new Intent(getContext(), Activity_Search.class);//设置跳转
                 if (editText.getText().toString().equals("")){
                     intent.putExtra("S",0);
                 }else{

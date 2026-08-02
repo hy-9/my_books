@@ -1,24 +1,26 @@
 package com.example.my_books;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.example.my_books.activity.Activity_register;
+import com.example.my_books.fragment.homeFragment;
+import com.example.my_books.fragment.myFragment;
+import com.example.my_books.model.user;
+import com.example.my_books.sql.sql;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,7 +62,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
             @Override
             public void onClick(View view) {
                 if (!yhdl){
-                    Intent intent = new Intent(MainActivity.this,Activity_register.class);
+                    Intent intent = new Intent(MainActivity.this, Activity_register.class);
                     startActivity(intent);
                 }
             }

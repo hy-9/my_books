@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity_Book_Particulars">
+    tools:context=".activity.Activity_Book_Particulars">
     <!--    书的详情页-->
     <!--        添加顶部导航栏-->
     <LinearLayout

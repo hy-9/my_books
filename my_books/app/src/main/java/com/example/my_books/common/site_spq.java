@@ -1,21 +1,19 @@
-package com.example.my_books;
+package com.example.my_books.common;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.CheckBox;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.my_books.book;
 
-import java.util.LinkedList;
+import com.example.my_books.R;
+import com.example.my_books.model.site;
+import com.example.my_books.model.site_ccq;
+
 import java.util.List;
 //书模板的适配器类
 public class site_spq extends BaseAdapter {
@@ -79,9 +77,4 @@ public class site_spq extends BaseAdapter {
         }
         return view;//返回创造的条目
     }
-}
-// 短时存储器用来暂时存放控件的id
-class site_ccq{
-    TextView site_name,quantity,aa;
-    RelativeLayout bj;
 }

@@ -1,4 +1,4 @@
-package com.example.my_books;
+package com.example.my_books.fragment;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -7,18 +7,24 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.viewpager.widget.ViewPager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.my_books.activity.Activity_Search;
+import com.example.my_books.activity.Activity_Site;
+import com.example.my_books.activity.Activity_register;
+import com.example.my_books.R;
+import com.example.my_books.model.site;
+import com.example.my_books.model.user;
+import com.example.my_books.common.site_spq;
+import com.example.my_books.sql.sql;
 
 import java.util.List;
 
@@ -90,7 +96,7 @@ public class myFragment extends Fragment {
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(),Activity_register.class);
+                Intent intent = new Intent(getActivity(), Activity_register.class);
                 startActivity(intent);
             }
         });
@@ -125,7 +131,7 @@ public class myFragment extends Fragment {
         site.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(),Activity_Site.class);
+                Intent intent = new Intent(getActivity(), Activity_Site.class);
                 startActivity(intent);
             }
         });
@@ -133,7 +139,7 @@ public class myFragment extends Fragment {
         like.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(getContext(),Activity_Search.class);//设置跳转
+                Intent intent=new Intent(getContext(), Activity_Search.class);//设置跳转
                 intent.putExtra("S",3);
                 startActivity(intent);//执行跳转
             }

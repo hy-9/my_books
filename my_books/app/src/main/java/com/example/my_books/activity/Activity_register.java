@@ -1,6 +1,4 @@
-package com.example.my_books;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.example.my_books.activity;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -16,6 +14,10 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.my_books.R;
+import com.example.my_books.model.user;
+import com.example.my_books.sql.sql;
 
 import java.util.List;
 
