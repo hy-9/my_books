@@ -1,6 +1,4 @@
-package com.example.my_books;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.example.my_books.activity;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -8,9 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -19,13 +15,15 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.my_books.R;
+import com.example.my_books.model.book;
+import com.example.my_books.model.site;
+import com.example.my_books.sql.sql;
+
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.TimeZone;
 
 public class Activity_Book_Particulars extends Activity {
     String[] King_s=new String[]{"名著","小说","科幻","知识","历史","哲学"};//下拉框中填入的数据
@@ -199,7 +197,7 @@ public class Activity_Book_Particulars extends Activity {
                 adBd1.setPositiveButton("确定", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        List< com.example.my_books.book > books = new LinkedList<book>();
+                        List<book> books = new LinkedList<book>();
                         books.add(book);
                         sql.sc_books(db,books);
                         finish();//返回上一级

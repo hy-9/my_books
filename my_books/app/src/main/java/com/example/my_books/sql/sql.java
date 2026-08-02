@@ -1,4 +1,4 @@
-package com.example.my_books;
+package com.example.my_books.sql;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -7,6 +7,10 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
+
+import com.example.my_books.model.book;
+import com.example.my_books.model.site;
+import com.example.my_books.model.user;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -85,7 +89,7 @@ public class sql extends SQLiteOpenHelper {
             //用do while来遍历cursor
             do {
                 //实例化一个有数据的shu类型，参数来自按列查询cursor的数据
-                com.example.my_books.user user =new user(cursor.getInt(cursor.getColumnIndexOrThrow("id")),
+                user user =new user(cursor.getInt(cursor.getColumnIndexOrThrow("id")),
                         cursor.getString(cursor.getColumnIndexOrThrow("user_name")),
                         cursor.getString(cursor.getColumnIndexOrThrow("password")));
                 //把shu添加到链表中
@@ -151,7 +155,7 @@ public class sql extends SQLiteOpenHelper {
         return user.getId();
     }
     //添加书籍
-    public long add_book(SQLiteDatabase db,book book){
+    public long add_book(SQLiteDatabase db, book book){
         //实例化常量值
         ContentValues cValue = new ContentValues();
         //id  ,user_id INTEGER,book_name TEXT,author TEXT,

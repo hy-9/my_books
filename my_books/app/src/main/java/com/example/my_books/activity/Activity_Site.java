@@ -1,6 +1,4 @@
-package com.example.my_books;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.example.my_books.activity;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -22,6 +20,12 @@ import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.my_books.R;
+import com.example.my_books.model.book;
+import com.example.my_books.model.site;
+import com.example.my_books.sql.site_spq;
+import com.example.my_books.sql.sql;
 
 import java.util.List;
 
@@ -99,7 +103,7 @@ public class Activity_Site extends Activity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (!Cpattern){
-                    Intent intent=new Intent(Activity_Site.this,Activity_Search.class);//设置跳转
+                    Intent intent=new Intent(Activity_Site.this, Activity_Search.class);//设置跳转
                     intent.putExtra("S",4);
                     intent.putExtra("S_s",position);
                     startActivity(intent);//执行跳转

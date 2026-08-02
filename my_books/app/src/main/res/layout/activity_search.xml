@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity_Search">
+    tools:context=".activity.Activity_Search">
     <!--            用于装顶部导航栏中的物体，话说为什么不直接用这个。。。-->
     <RelativeLayout
         android:id="@+id/search_1"

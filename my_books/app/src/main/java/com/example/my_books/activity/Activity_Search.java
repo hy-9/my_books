@@ -1,6 +1,4 @@
-package com.example.my_books;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.example.my_books.activity;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -19,6 +17,13 @@ import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.my_books.R;
+import com.example.my_books.model.book;
+import com.example.my_books.model.site;
+import com.example.my_books.sql.shu_spq;
+import com.example.my_books.sql.site_spq;
+import com.example.my_books.sql.sql;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -127,7 +132,7 @@ private Intent intent;
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 book cshu=(book) adapterView.getItemAtPosition(i);//把点击的那条数据包装到cshu里
                 if (!Cpattern&&Sui.getVisibility()==View.GONE){
-                    Intent intent=new Intent(Activity_Search.this,Activity_Book_Particulars.class);//设置跳转
+                    Intent intent=new Intent(Activity_Search.this, Activity_Book_Particulars.class);//设置跳转
                     //把数据传递   String book_name,String author,String nationality,int king,String comment,
                     //              int site,String date,int like
 

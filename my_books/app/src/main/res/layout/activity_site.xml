@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity_Site"
+    tools:context=".activity.Activity_Site"
     android:background="@color/grey">
     <RelativeLayout
         android:layout_width="match_parent"

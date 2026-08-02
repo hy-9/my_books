@@ -1,20 +1,17 @@
-package com.example.my_books;
+package com.example.my_books.sql;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.my_books.book;
+import com.example.my_books.R;
+import com.example.my_books.model.book;
 
-import java.util.LinkedList;
 import java.util.List;
 //书模板的适配器类
 public class shu_spq extends BaseAdapter {
@@ -111,19 +108,4 @@ public class shu_spq extends BaseAdapter {
         }
         return view;//返回创造的条目
     }
-}
-// 短时存储器用来暂时存放控件的id
-class dsccq{
-    //              书名  ，   作者  ，   国籍  ，   备注  ， 种类  ，存放地
-    TextView sm;
-    TextView zz;
-    TextView gj;
-    TextView lb;
-    TextView bz;
-    TextView cfd;
-    ImageView tb;
-    ImageView bj;
-    CheckBox dx;
-    TextView date;
-    ImageView like;
 }
