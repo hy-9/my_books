@@ -23,7 +23,7 @@
             android:name=".activity.Activity_Book_Particulars"
             android:exported="false" />
         <activity
-            android:name=".activity.Activity_register"
+            android:name=".activity.register.Activity_register"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
