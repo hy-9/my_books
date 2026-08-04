@@ -19,7 +19,7 @@ import android.widget.Toast;
 
 import com.example.my_books.activity.Activity_Search;
 import com.example.my_books.activity.Activity_Site;
-import com.example.my_books.activity.Activity_register;
+import com.example.my_books.activity.register.Activity_register;
 import com.example.my_books.R;
 import com.example.my_books.model.site;
 import com.example.my_books.model.user;
@@ -162,7 +162,7 @@ public class myFragment extends Fragment {
     private void initViews(){
         sql=new sql(getContext());
         db = sql.getReadableDatabase();//得到的是SQLiteDatabase对象
-        if (sql.cxbj(db).getId()==0){
+        if (sql.queryLoginUser(db).getId()==0){
             //设置可见属性为显示
             register.setVisibility(View.VISIBLE);
             //设置属性为隐藏
@@ -183,7 +183,7 @@ public class myFragment extends Fragment {
         //根据适配器生成书
         site_s.setAdapter(spq);
         int[] a=sql.cxbj_book_site_amount(db);
-        u= sql.cxbj(db);
+        u= sql.queryLoginUser(db);
         user_name.setText(u.getUser_name());
         user_id.setText("用户id:"+u.getId());
         site_amount.setText("书架数"+a[1]+"个");

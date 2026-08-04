@@ -23,7 +23,7 @@ import android.widget.Toast;
 import com.example.my_books.R;
 import com.example.my_books.activity.Activity_Book_Particulars;
 import com.example.my_books.activity.Activity_Search;
-import com.example.my_books.activity.Activity_register;
+import com.example.my_books.activity.register.Activity_register;
 import com.example.my_books.model.book;
 import com.example.my_books.model.site;
 import com.example.my_books.common.shu_spq;
@@ -425,7 +425,7 @@ public class homeFragment extends Fragment {
         sql=new sql(getContext());
         db = sql.getReadableDatabase();//得到的是SQLiteDatabase对象
         //设置可见
-        if (sql.cxbj(db).getId()==0){
+        if (sql.queryLoginUser(db).getId()==0){
             //设置可见属性为显示
             register.setVisibility(View.VISIBLE);
             //设置属性为隐藏

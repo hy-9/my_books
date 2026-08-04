@@ -17,8 +17,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class sql extends SQLiteOpenHelper {
-    String sql_user="user";//所有用户的库
-    String user_use="user_use";//登录的用户
+    String ALL_USERS ="user";//所有用户的库
+    String CURRENT_USER ="user_use";//登录的用户
     String site="site";//所有用户的地址
     String books="book";//所有的书
     public sql(@Nullable Context context) {
@@ -27,8 +27,8 @@ public class sql extends SQLiteOpenHelper {
     //默认建表方法
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table "+sql_user+" (id INTEGER PRIMARY KEY AUTOINCREMENT ,user_name TEXT,password TEXT)");
-        db.execSQL("create table "+user_use+" (id INTEGER ,user_name TEXT,password TEXT)");
+        db.execSQL("create table "+ ALL_USERS +" (id INTEGER PRIMARY KEY AUTOINCREMENT ,user_name TEXT,password TEXT)");
+        db.execSQL("create table "+ CURRENT_USER +" (id INTEGER ,user_name TEXT,password TEXT)");
         db.execSQL("create table "+site+" (id INTEGER PRIMARY KEY AUTOINCREMENT,user_id INTEGER,site TEXT)");
         //1.名著，2.小说，3.科幻，4.知识，5.历史，6.哲学
         db.execSQL("create table "+books+" (id INTEGER PRIMARY KEY AUTOINCREMENT ,user_id INTEGER,book_name TEXT,author TEXT,nationality TEXT,king INTEGER,comment TEXT,site INTEGER,date TEXT,likes INTEGER)");
@@ -39,7 +39,7 @@ public class sql extends SQLiteOpenHelper {
         cValue.put("user_name","root");
         cValue.put("password","123456");
         //调用insert()方法插入数据
-        db.insert(sql_user,null,cValue);
+        db.insert(ALL_USERS,null,cValue);
         //实例化常量值
         ContentValues cValue1 = new ContentValues();
         //以键值对的形式储存数据
@@ -80,10 +80,10 @@ public class sql extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) { }
     //登录查询方法
-    public List<user> cxdl(SQLiteDatabase db,String account){
+    public List<user> queryAllUsersByUserName(SQLiteDatabase db, String account){
         List<user> list_user=new LinkedList<>();
         //按cxl和cxtj来查询sbm中的数据并储存到cursor中
-        Cursor cursor=db.query( sql_user,null,"user_name = ?",new String[]{account},null,null,"id desc");
+        Cursor cursor=db.query(ALL_USERS,null,"user_name = ?",new String[]{account},null,null,"id desc");
         //判断cursor是否为空
         if (cursor.moveToFirst()){
             //用do while来遍历cursor
@@ -102,10 +102,10 @@ public class sql extends SQLiteOpenHelper {
         return list_user;
     }
     //本机查询方法
-    public user cxbj(SQLiteDatabase db){
+    public user queryLoginUser(SQLiteDatabase db){
         user user=new user();
         //按cxl和cxtj来查询sbm中的数据并储存到cursor中
-        Cursor cursor=db.query( user_use,null,null,null,null,null,"id desc");
+        Cursor cursor=db.query(CURRENT_USER,null,null,null,null,null,"id desc");
         //判断cursor是否为空
         if (cursor.moveToFirst()){
             //用do while来遍历cursor
@@ -132,11 +132,11 @@ public class sql extends SQLiteOpenHelper {
         cValue.put("user_name",user.getUser_name());
         cValue.put("password",user.getPassword());
         //调用insert()方法插入数据
-        db.insert(user_use,null,cValue);
+        db.insert(CURRENT_USER,null,cValue);
     }
     //删除本机用户数据
     public void scbj(SQLiteDatabase db){
-        db.delete(user_use,null,null);
+        db.delete(CURRENT_USER,null,null);
     }
     //注册用户      注册成功返回id，失败返回-1
     public long zcyh(SQLiteDatabase db,user user){
@@ -147,7 +147,7 @@ public class sql extends SQLiteOpenHelper {
 //        cValue.put("account",user.getAccount());
         cValue.put("password",user.getPassword());
         //调用insert()方法插入数据
-        user.setId((int)db.insert(sql_user,null,cValue));  ;
+        user.setId((int)db.insert(ALL_USERS,null,cValue));  ;
         if (user.getId()!=0){
             gxbj(db, user);
             add_site(db, "默认地址");
@@ -161,7 +161,7 @@ public class sql extends SQLiteOpenHelper {
         //id  ,user_id INTEGER,book_name TEXT,author TEXT,
         // nationality TEXT,king INTEGER,comment TEXT,
         // site INTEGER,date TEXT,likes INTEGER
-        user user=cxbj(db);
+        user user= queryLoginUser(db);
         //以键值对的形式储存数据
         cValue.put("user_id",user.getId());
         cValue.put("book_name",book.getBook_name());
@@ -181,7 +181,7 @@ public class sql extends SQLiteOpenHelper {
         ContentValues cValue = new ContentValues();
         //id INTEGER PRIMARY KEY AUTOINCREMENT,
         // user_id INTEGER,site TEXT
-        user user=cxbj(db);
+        user user= queryLoginUser(db);
         //以键值对的形式储存数据
         cValue.put("user_id",user.getId());
         cValue.put("site",site1);
@@ -192,7 +192,7 @@ public class sql extends SQLiteOpenHelper {
     public  List<site> cxbj_site(SQLiteDatabase db){
         List<site> list_site=new LinkedList<>();
         //按cxl和cxtj来查询sbm中的数据并储存到cursor中
-        Cursor cursor=db.query( site,null,"user_id = ?",new String[]{String.valueOf(cxbj(db).getId())},null,null,"id desc");
+        Cursor cursor=db.query( site,null,"user_id = ?",new String[]{String.valueOf(queryLoginUser(db).getId())},null,null,"id desc");
         //判断cursor是否为空
         if (cursor.moveToFirst()){
             //用do while来遍历cursor
@@ -230,7 +230,7 @@ public class sql extends SQLiteOpenHelper {
     public List<book> cxbj_books(SQLiteDatabase db){
         List<book> list_book=new LinkedList<>();
         //按cxl和cxtj来查询sbm中的数据并储存到cursor中
-        Cursor cursor=db.query( books,null,"user_id = ?",new String[]{String.valueOf(cxbj(db).getId())},null,null,"date desc");
+        Cursor cursor=db.query( books,null,"user_id = ?",new String[]{String.valueOf(queryLoginUser(db).getId())},null,null,"date desc");
         //判断cursor是否为空
         if (cursor.moveToFirst()){
             //用do while来遍历cursor
@@ -279,7 +279,7 @@ public class sql extends SQLiteOpenHelper {
     public List<book> cxbj_books_S(SQLiteDatabase db,List<site> sites,String content,int sort,Boolean[] p){
         String selection="user_id = ?",orderBy;
         List<String> L_selectionArgsnew =new ArrayList<String>();
-        L_selectionArgsnew.add(String.valueOf(cxbj(db).getId()));
+        L_selectionArgsnew.add(String.valueOf(queryLoginUser(db).getId()));
 
         if (sort==0){
             orderBy="date desc";
@@ -500,17 +500,17 @@ public class sql extends SQLiteOpenHelper {
     }
     //查询本机所有种类各自的数量
     public int[] cxbj_book_AllKing_amount(SQLiteDatabase db) {
-        return new int[]{db.query(books, null, "king = ? and user_id = ?", new String[]{"1",String.valueOf(cxbj(db).getId())}, null, null, "id desc").getCount(),
-                db.query(books, null, "king = ? and user_id = ?", new String[]{"2",String.valueOf(cxbj(db).getId())}, null, null, "id desc").getCount(),
-                db.query(books, null, "king = ? and user_id = ?", new String[]{"3",String.valueOf(cxbj(db).getId())}, null, null, "id desc").getCount(),
-                db.query(books, null, "king = ? and user_id = ?", new String[]{"4",String.valueOf(cxbj(db).getId())}, null, null, "id desc").getCount(),
-                db.query(books, null, "king = ? and user_id = ?", new String[]{"5",String.valueOf(cxbj(db).getId())}, null, null, "id desc").getCount(),
-                db.query(books, null, "king = ? and user_id = ?", new String[]{"6",String.valueOf(cxbj(db).getId())}, null, null, "id desc").getCount()};
+        return new int[]{db.query(books, null, "king = ? and user_id = ?", new String[]{"1",String.valueOf(queryLoginUser(db).getId())}, null, null, "id desc").getCount(),
+                db.query(books, null, "king = ? and user_id = ?", new String[]{"2",String.valueOf(queryLoginUser(db).getId())}, null, null, "id desc").getCount(),
+                db.query(books, null, "king = ? and user_id = ?", new String[]{"3",String.valueOf(queryLoginUser(db).getId())}, null, null, "id desc").getCount(),
+                db.query(books, null, "king = ? and user_id = ?", new String[]{"4",String.valueOf(queryLoginUser(db).getId())}, null, null, "id desc").getCount(),
+                db.query(books, null, "king = ? and user_id = ?", new String[]{"5",String.valueOf(queryLoginUser(db).getId())}, null, null, "id desc").getCount(),
+                db.query(books, null, "king = ? and user_id = ?", new String[]{"6",String.valueOf(queryLoginUser(db).getId())}, null, null, "id desc").getCount()};
     }
     //查询本机书籍与书架数量
     public int[] cxbj_book_site_amount(SQLiteDatabase db) {
-        return new int[]{db.query(books, null, "user_id = ?", new String[]{String.valueOf(cxbj(db).getId())}, null, null, "id desc").getCount(),
-                db.query(site, null, "user_id = ?", new String[]{String.valueOf(cxbj(db).getId())}, null, null, "id desc").getCount()};
+        return new int[]{db.query(books, null, "user_id = ?", new String[]{String.valueOf(queryLoginUser(db).getId())}, null, null, "id desc").getCount(),
+                db.query(site, null, "user_id = ?", new String[]{String.valueOf(queryLoginUser(db).getId())}, null, null, "id desc").getCount()};
     }
     //查询包含地址信息的书籍
     public List<book> cxbj_intact_book(SQLiteDatabase db,List<site> bj_site){
@@ -547,7 +547,7 @@ public class sql extends SQLiteOpenHelper {
         //id  ,user_id INTEGER,book_name TEXT,author TEXT,
         // nationality TEXT,king INTEGER,comment TEXT,
         // site INTEGER,date TEXT,likes INTEGER
-        user user=cxbj(db);
+        user user= queryLoginUser(db);
         //以键值对的形式储存数据
         cValue.put("user_id",user.getId());
         cValue.put("book_name",book.getBook_name());
@@ -567,7 +567,7 @@ public class sql extends SQLiteOpenHelper {
         //id  ,user_id INTEGER,book_name TEXT,author TEXT,
         // nationality TEXT,king INTEGER,comment TEXT,
         // site INTEGER,date TEXT,likes INTEGER
-        user user=cxbj(db);
+        user user= queryLoginUser(db);
         int i=0;
         for (book book1:book) {
             //以键值对的形式储存数据
@@ -594,7 +594,7 @@ public class sql extends SQLiteOpenHelper {
         //id  ,user_id INTEGER,book_name TEXT,author TEXT,
         // nationality TEXT,king INTEGER,comment TEXT,
         // site INTEGER,date TEXT,likes INTEGER
-        user user=cxbj(db);
+        user user= queryLoginUser(db);
         //以键值对的形式储存数据
         cValue.put("user_id",user.getId());
         cValue.put("site",site.getSite());

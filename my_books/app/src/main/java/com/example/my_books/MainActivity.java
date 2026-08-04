@@ -16,7 +16,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.example.my_books.activity.Activity_register;
+import com.example.my_books.activity.register.Activity_register;
 import com.example.my_books.fragment.homeFragment;
 import com.example.my_books.fragment.myFragment;
 import com.example.my_books.model.user;
@@ -38,9 +38,9 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     //三个Tab对应的ImageButton
     private ImageButton mImg1,mImg2,mImg3;
     private Intent intent;
-    private RelativeLayout dl;
+    private RelativeLayout mainTopBar;
     sql sql =new sql(MainActivity.this);
-    private boolean yhdl=false;
+    private boolean isLogin =false;
     private user user;
     private SQLiteDatabase db ;//得到的是SQLiteDatabase对象;
     private TextView my_yhm;
@@ -58,10 +58,10 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         initEvents();//初始化事件
 
         //登录点击事件
-        dl.setOnClickListener(new View.OnClickListener() {
+        mainTopBar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!yhdl){
+                if (!isLogin){
                     Intent intent = new Intent(MainActivity.this, Activity_register.class);
                     startActivity(intent);
                 }
@@ -79,7 +79,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         mImg1 = (ImageButton) findViewById(R.id.id_tab_img1);
         mImg2 = (ImageButton) findViewById(R.id.id_tab_img2);
 
-        dl=(RelativeLayout) findViewById(R.id.my_order);
+        mainTopBar =(RelativeLayout) findViewById(R.id.my_order);
         my_yhm=(TextView) findViewById(R.id.my_yhm);
     }
 
@@ -90,13 +90,13 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
         db= sql.getReadableDatabase();//得到的是SQLiteDatabase对象;
         //        查询本机
-        user=sql.cxbj(db);
+        user=sql.queryLoginUser(db);
         if (user.getId() != 0){
-            yhdl=true;
+            isLogin =true;
             my_yhm.setText(user.getUser_name()+"");
         }else{
             my_yhm.setText("点击登录");
-            yhdl=false;
+            isLogin =false;
         }
     }
 

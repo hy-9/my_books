@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.Activity_register">
+    tools:context=".activity.register.Activity_register">
 
     <ImageView
         android:id="@+id/register_fan_huei"
@@ -20,7 +20,7 @@
         android:layout_below="@id/register_fan_huei"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="10dp"
-        android:text="账号密码登录"
+        android:text="账号登录"
         android:textColor="@color/black"
         android:textSize="35dp"
         android:textStyle="bold" />
