@@ -1,6 +1,5 @@
 package com.example.my_books.activity.register;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.database.sqlite.SQLiteDatabase;
@@ -15,15 +14,20 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.lifecycle.ViewModel;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
 
 import com.example.my_books.R;
+import com.example.my_books.data.Repository;
+import com.example.my_books.data.database.AppDatabase;
+import com.example.my_books.data.entity.User;
 import com.example.my_books.model.user;
 import com.example.my_books.sql.sql;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class Activity_register extends Activity {
+public class Activity_register extends AppCompatActivity {
     ImageView backButton, showPasswordButton;
     EditText inputUserName, inputUserPassword;
     TextView dl,yhxy,zhu_che,biao;
@@ -74,7 +78,25 @@ public class Activity_register extends Activity {
         bang_ding();
         sql initSql =new sql(Activity_register.this);//数据库类
         SQLiteDatabase db = initSql.getReadableDatabase();//得到的是SQLiteDatabase对象
-        RegisterViewModel registerViewModel = new RegisterViewModel(initSql,db);
+        AppDatabase appDatabase = AppDatabase.Companion.getInstance(this);
+        Repository repository = new Repository(appDatabase.userDao());
+        RegisterViewModel registerViewModel = new RegisterViewModel(repository);
+        List<User> users = new ArrayList<User>();
+        registerViewModel.getAllUserLiveData().observe(this, new Observer<List<User>>() {
+            @Override
+            public void onChanged(List<User> value) {
+                users.addAll(value);
+                    List<user> allUsers = initSql.queryAllUsersByUserName(db, inputUserName.getText()+"");
+                    if (users.size() != 0 && users.get(0).getPassword().equals(inputUserPassword.getText()+"")){
+                        Toast.makeText(getApplicationContext(), "用户"+users.get(0).getUser_name()+"登录成功", Toast.LENGTH_LONG).show();
+                        initSql.gxbj(db,allUsers.get(0));
+                        finish();
+                    }else {
+                        Toast.makeText(getApplicationContext(), "用户名或密码错误", Toast.LENGTH_LONG).show();
+                    }
+                    registerViewModel.clearAllUsersState();
+            }
+        });
         //返回事件
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,14 +112,17 @@ public class Activity_register extends Activity {
                     if (inputUserName.getText() + "" != "" && inputUserPassword.getText() + "" != "") {
                         //判断为登录还是注册界面
                         if (!isRegister){//登录界面
-                            List<user> allUsers = initSql.queryAllUsersByUserName(db, inputUserName.getText()+"");
-                            if (allUsers.size() != 0 && allUsers.get(0).getPassword().equals(inputUserPassword.getText()+"")){
-                                Toast.makeText(getApplicationContext(), "用户"+allUsers.get(0).getUser_name()+"登录成功", Toast.LENGTH_LONG).show();
-                                initSql.gxbj(db,allUsers.get(0));
-                                finish();
-                            }else {
-                                Toast.makeText(getApplicationContext(), "用户名或密码错误", Toast.LENGTH_LONG).show();
-                            }
+                            registerViewModel.queryAllUsers(inputUserName.getText() + "");
+                            registerViewModel.getAllUser();
+//                            List<user> allUsers = initSql.queryAllUsersByUserName(db, inputUserName.getText()+"");
+//                            if (allUsers.size() != 0 && allUsers.get(0).getPassword().equals(inputUserPassword.getText()+"")){
+//                            if (users.size() != 0 && users.get(0).getPassword().equals(inputUserPassword.getText()+"")){
+//                                Toast.makeText(getApplicationContext(), "用户"+users.get(0).getUser_name()+"登录成功", Toast.LENGTH_LONG).show();
+//                                initSql.gxbj(db,allUsers.get(0));
+//                                finish();
+//                            }else {
+//                                Toast.makeText(getApplicationContext(), "用户名或密码错误", Toast.LENGTH_LONG).show();
+//                            }
                         } else {//注册界面
                             List<user> yh= initSql.queryAllUsersByUserName(db, inputUserName.getText()+"");
                             if (yh.size()==0){
