@@ -7,6 +7,7 @@ import androidx.room.RoomDatabase
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.my_books.data.dao.BookDao
+import com.example.my_books.data.dao.CurrentUserDao
 import com.example.my_books.data.dao.SiteDao
 import com.example.my_books.data.dao.UserDao
 import com.example.my_books.data.entity.Book
@@ -22,7 +23,8 @@ import com.example.my_books.data.entity.User
 abstract class AppDatabase : RoomDatabase() {
     abstract fun userDao(): UserDao
     abstract fun siteDao(): SiteDao
-    abstract fun BookDao(): BookDao
+    abstract fun bookDao(): BookDao
+    abstract fun currentUserDao(): CurrentUserDao
 
 
     companion object {
