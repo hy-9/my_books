@@ -17,7 +17,7 @@ import com.example.my_books.data.entity.User
 
 @Database(
     entities = [User::class, Site::class, Book::class, CurrentUser::class],
-    version = 2,
+    version = 3,
     exportSchema = false
 )
 abstract class AppDatabase : RoomDatabase() {
@@ -45,6 +45,10 @@ abstract class AppDatabase : RoomDatabase() {
                 database.execSQL("ALTER TABLE user_use_new RENAME TO user_use")
             }
         }
+        private val MIGRATION_2_3 = object : Migration(2, 3) {
+            override fun migrate(database: SupportSQLiteDatabase) {
+            }
+        }
         @Volatile
         private var INSTANCE: AppDatabase? = null
         // 双重检查锁（DCL）实现线程安全的单例
@@ -55,14 +59,11 @@ abstract class AppDatabase : RoomDatabase() {
                     context.applicationContext,
                     AppDatabase::class.java,
                     "sql.db" // 数据库文件名
-                ).addMigrations(MIGRATION_1_2)
+                ).addMigrations(MIGRATION_1_2,MIGRATION_2_3)
                     .build()
                 INSTANCE = instance
                 instance
             }
         }
     }
-
-
-
 }

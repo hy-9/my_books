@@ -31,8 +31,11 @@ class RegisterViewModel(private val repository: Repository) : ViewModel(){
     val isAcceptTerms: StateFlow<Boolean> = _isAcceptTerms
     val isAcceptTermsLiveData = _isAcceptTerms.asLiveData()
     private val _loginResult = MutableSharedFlow<SimpleResponse>(replay = 0)
+    private val _registerResult = MutableSharedFlow<SimpleResponse>(replay = 0)
     val loginResult: SharedFlow<SimpleResponse> = _loginResult
+    val registerResult: SharedFlow<SimpleResponse> = _registerResult
     val loginResultLiveData = _loginResult.asLiveData()
+    val registerResultLiveData = _registerResult.asLiveData()
     fun changeLoginState(){
         viewModelScope.launch {
             _isLoginState.value = !_isLoginState.value
@@ -58,6 +61,12 @@ class RegisterViewModel(private val repository: Repository) : ViewModel(){
         viewModelScope.launch {
             val result = repository.loginByUserNameAndPassword(_username.value,_password.value,_isAcceptTerms.value)
             _loginResult.emit(result)
+        }
+    }
+    fun register(){
+        viewModelScope.launch {
+            val result = repository.register(_username.value,_password.value,_isAcceptTerms.value)
+            _registerResult.emit(result)
         }
     }
 }
