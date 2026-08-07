@@ -15,12 +15,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.my_books.R;
+import com.example.my_books.common.SimpleResponse;
+import com.example.my_books.common.ViewModelFactory;
 import com.example.my_books.data.Repository;
 import com.example.my_books.data.database.AppDatabase;
 import com.example.my_books.data.entity.User;
+import com.example.my_books.databinding.ActivityRegisterBinding;
 import com.example.my_books.model.user;
 import com.example.my_books.sql.sql;
 
@@ -30,71 +35,65 @@ import java.util.List;
 public class Activity_register extends AppCompatActivity {
     ImageView backButton, showPasswordButton;
     EditText inputUserName, inputUserPassword;
-    TextView dl,yhxy,zhu_che,biao;
+    TextView dl, yhxy, zhu_che, biao;
     RadioButton TermsCheckbox;
-    boolean isRegister =false;
-    boolean p2=false;
+    boolean isRegister = false;
+    boolean p2 = false;
 
 
     //单独线程动态更新页面    1.更新状态   2.看密码
-    private Handler handler=new Handler(){
+    private Handler handler = new Handler() {
         //更新方法
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            int id=msg.what;
-            if (id==1){
-                if (!isRegister){
+            int id = msg.what;
+            if (id == 1) {
+                if (!isRegister) {
                     biao.setText("注册新用户");
                     dl.setText("注册并登录");
                     zhu_che.setText("登录");
-                    isRegister =!isRegister;
-                }else {
+                    isRegister = !isRegister;
+                } else {
                     biao.setText("账号密码登录");
                     dl.setText("登录");
                     zhu_che.setText("注册成为新用户");
-                    isRegister =!isRegister;
+                    isRegister = !isRegister;
                 }
                 inputUserName.setText(null);
                 inputUserPassword.setText(null);
-            }else if (id==2){
-                if(!p2){
+            } else if (id == 2) {
+                if (!p2) {
                     showPasswordButton.setImageDrawable(getResources().getDrawable(R.drawable.zhen_yan));
                     inputUserPassword.setInputType(InputType.TYPE_NULL);
-                    p2=!p2;
-                }else {
+                    p2 = !p2;
+                } else {
                     showPasswordButton.setImageDrawable(getResources().getDrawable(R.drawable.bi_yan));
-                    inputUserPassword.setInputType(InputType.TYPE_CLASS_TEXT|InputType.TYPE_TEXT_VARIATION_PASSWORD);
-                    p2=!p2;
+                    inputUserPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                    p2 = !p2;
                 }
             }
-
         }
     };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+        AppDatabase appDatabase = AppDatabase.Companion.getInstance(this);
+        Repository repository = new Repository(appDatabase.userDao(), appDatabase.currentUserDao());
+        ViewModelFactory factory = new ViewModelFactory(repository);
+        RegisterViewModel registerViewModel = new ViewModelProvider(this, factory).get(RegisterViewModel.class);
+        ActivityRegisterBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_register);
+        binding.setViewModel(registerViewModel);
+        binding.setLifecycleOwner(this);
         //绑定控件与变量
         bang_ding();
-        sql initSql =new sql(Activity_register.this);//数据库类
+        sql initSql = new sql(Activity_register.this);//数据库类
         SQLiteDatabase db = initSql.getReadableDatabase();//得到的是SQLiteDatabase对象
-        AppDatabase appDatabase = AppDatabase.Companion.getInstance(this);
-        Repository repository = new Repository(appDatabase.userDao());
-        RegisterViewModel registerViewModel = new RegisterViewModel(repository);
-        List<User> users = new ArrayList<User>();
-        registerViewModel.getAllUserLiveData().observe(this, new Observer<List<User>>() {
-            @Override
-            public void onChanged(List<User> value) {
-                users.addAll(value);
-                    List<user> allUsers = initSql.queryAllUsersByUserName(db, inputUserName.getText()+"");
-                    if (users.size() != 0 && users.get(0).getPassword().equals(inputUserPassword.getText()+"")){
-                        Toast.makeText(getApplicationContext(), "用户"+users.get(0).getUser_name()+"登录成功", Toast.LENGTH_LONG).show();
-                        initSql.gxbj(db,allUsers.get(0));
-                        finish();
-                    }else {
-                        Toast.makeText(getApplicationContext(), "用户名或密码错误", Toast.LENGTH_LONG).show();
-                    }
-                    registerViewModel.clearAllUsersState();
+        registerViewModel.getLoginResultLiveData().observe(this, result -> {
+            Toast.makeText(this, result.getMessage().toString(), Toast.LENGTH_SHORT).show();
+            if (result.getResult()) {
+                finish();
             }
         });
         //返回事件
@@ -108,45 +107,29 @@ public class Activity_register extends AppCompatActivity {
         dl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (TermsCheckbox.isChecked()) {
+                //判断为登录还是注册界面
+                if (!isRegister) {//登录界面
+                    registerViewModel.login();
+                } else {//注册界面
                     if (inputUserName.getText() + "" != "" && inputUserPassword.getText() + "" != "") {
-                        //判断为登录还是注册界面
-                        if (!isRegister){//登录界面
-                            registerViewModel.queryAllUsers(inputUserName.getText() + "");
-                            registerViewModel.getAllUser();
-//                            List<user> allUsers = initSql.queryAllUsersByUserName(db, inputUserName.getText()+"");
-//                            if (allUsers.size() != 0 && allUsers.get(0).getPassword().equals(inputUserPassword.getText()+"")){
-//                            if (users.size() != 0 && users.get(0).getPassword().equals(inputUserPassword.getText()+"")){
-//                                Toast.makeText(getApplicationContext(), "用户"+users.get(0).getUser_name()+"登录成功", Toast.LENGTH_LONG).show();
-//                                initSql.gxbj(db,allUsers.get(0));
-//                                finish();
-//                            }else {
-//                                Toast.makeText(getApplicationContext(), "用户名或密码错误", Toast.LENGTH_LONG).show();
-//                            }
-                        } else {//注册界面
-                            List<user> yh= initSql.queryAllUsersByUserName(db, inputUserName.getText()+"");
-                            if (yh.size()==0){
-                                user user1 = new user(inputUserName.getText()+"", inputUserPassword.getText()+"");
-                                user1.setId((int) initSql.zcyh(db,user1));
-                                 if (user1.getId()!=0){
-                                     Toast.makeText(getApplicationContext(), "注册成功", Toast.LENGTH_LONG).show();
-                                        initSql.gxbj(db,user1);
-                                        finish();
-                                 }else {
-                                     Toast.makeText(getApplicationContext(), "注册失败", Toast.LENGTH_LONG).show();
-                                     finish();
-                                 }
-                            }else {
-                                Toast.makeText(getApplicationContext(), "用户名以注册", Toast.LENGTH_LONG).show();
+                        List<user> yh = initSql.queryAllUsersByUserName(db, inputUserName.getText() + "");
+                        if (yh.size() == 0) {
+                            user user1 = new user(inputUserName.getText() + "", inputUserPassword.getText() + "");
+                            user1.setId((int) initSql.zcyh(db, user1));
+                            if (user1.getId() != 0) {
+                                Toast.makeText(getApplicationContext(), "注册成功", Toast.LENGTH_LONG).show();
+                                initSql.gxbj(db, user1);
+                                finish();
+                            } else {
+                                Toast.makeText(getApplicationContext(), "注册失败", Toast.LENGTH_LONG).show();
+                                finish();
                             }
-
-
+                        } else {
+                            Toast.makeText(getApplicationContext(), "用户名以注册", Toast.LENGTH_LONG).show();
                         }
                     } else {
                         Toast.makeText(getApplicationContext(), "用户名或密码不能为空", Toast.LENGTH_LONG).show();
                     }
-                } else {
-                    Toast.makeText(getApplicationContext(), "请同意用户协议", Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -170,6 +153,7 @@ public class Activity_register extends AppCompatActivity {
         zhu_che.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                registerViewModel.changeLoginState();
                 //状态转换
                 Message message = handler.obtainMessage();//新建通信变量
                 message.what = 1;//what属性
