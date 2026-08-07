@@ -22,7 +22,7 @@ public class sql extends SQLiteOpenHelper {
     String SITE ="site";//所有用户的地址
     String BOOK ="book";//所有的书
     public sql(@Nullable Context context) {
-        super(context,"sql.db", null, 2);
+        super(context,"sql.db", null, 3);
     }
     //默认建表方法
     @Override

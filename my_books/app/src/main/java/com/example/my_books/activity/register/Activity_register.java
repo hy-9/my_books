@@ -96,6 +96,12 @@ public class Activity_register extends AppCompatActivity {
                 finish();
             }
         });
+        registerViewModel.getRegisterResultLiveData().observe(this, result -> {
+            Toast.makeText(this, result.getMessage().toString(), Toast.LENGTH_SHORT).show();
+            if (result.getResult()) {
+                finish();
+            }
+        });
         //返回事件
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -107,29 +113,10 @@ public class Activity_register extends AppCompatActivity {
         dl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //判断为登录还是注册界面
-                if (!isRegister) {//登录界面
+                if (!isRegister) {
                     registerViewModel.login();
-                } else {//注册界面
-                    if (inputUserName.getText() + "" != "" && inputUserPassword.getText() + "" != "") {
-                        List<user> yh = initSql.queryAllUsersByUserName(db, inputUserName.getText() + "");
-                        if (yh.size() == 0) {
-                            user user1 = new user(inputUserName.getText() + "", inputUserPassword.getText() + "");
-                            user1.setId((int) initSql.zcyh(db, user1));
-                            if (user1.getId() != 0) {
-                                Toast.makeText(getApplicationContext(), "注册成功", Toast.LENGTH_LONG).show();
-                                initSql.gxbj(db, user1);
-                                finish();
-                            } else {
-                                Toast.makeText(getApplicationContext(), "注册失败", Toast.LENGTH_LONG).show();
-                                finish();
-                            }
-                        } else {
-                            Toast.makeText(getApplicationContext(), "用户名以注册", Toast.LENGTH_LONG).show();
-                        }
-                    } else {
-                        Toast.makeText(getApplicationContext(), "用户名或密码不能为空", Toast.LENGTH_LONG).show();
-                    }
+                } else {
+                    registerViewModel.register();
                 }
             }
         });
