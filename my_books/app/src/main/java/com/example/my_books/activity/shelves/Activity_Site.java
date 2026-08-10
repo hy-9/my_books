@@ -1,4 +1,4 @@
-package com.example.my_books.activity;
+package com.example.my_books.activity.shelves;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -21,7 +21,19 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelStoreOwner;
+
 import com.example.my_books.R;
+import com.example.my_books.activity.Activity_Search;
+import com.example.my_books.activity.register.RegisterViewModel;
+import com.example.my_books.common.ViewModelFactory;
+import com.example.my_books.data.Repository;
+import com.example.my_books.data.database.AppDatabase;
+import com.example.my_books.databinding.ActivityRegisterBinding;
+import com.example.my_books.databinding.ActivitySiteBinding;
 import com.example.my_books.model.book;
 import com.example.my_books.model.site;
 import com.example.my_books.common.site_spq;
@@ -29,7 +41,7 @@ import com.example.my_books.sql.sql;
 
 import java.util.List;
 
-public class Activity_Site extends Activity {
+public class Activity_Site extends AppCompatActivity {
     //        取消  重命名
     TextView logout,ren,delete,move;
     RelativeLayout r_more,r_set;
@@ -43,10 +55,22 @@ public class Activity_Site extends Activity {
     boolean Cpattern=false,Cmove=false;
     //选中书架信息
     site Csite;
+    ShelvesViewModel shelvesViewModel = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_site);
+        AppDatabase appDatabase = AppDatabase.Companion.getInstance(this);
+        Repository repository = new Repository(appDatabase.userDao(), appDatabase.currentUserDao(),appDatabase.shelvesDao());
+        ViewModelFactory factory = new ViewModelFactory(repository);
+        shelvesViewModel = new ViewModelProvider((ViewModelStoreOwner) this, factory).get(ShelvesViewModel.class);
+        ActivitySiteBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_site);
+        binding.setViewModel(shelvesViewModel);
+        binding.setLifecycleOwner(this);
+        shelvesViewModel.getShelvesResultLiveData().observe(this, result -> {
+            Toast.makeText(this, result.getMessage().toString(), Toast.LENGTH_SHORT).show();
+            updateLv(-1);
+        });
         initViews();
         //返回事件
         back.setOnClickListener(new View.OnClickListener() {
@@ -66,17 +90,8 @@ public class Activity_Site extends Activity {
                 builder.setView(inputServer);
                 builder.setPositiveButton("确定" , new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        String inputName = inputServer.getText().toString();
-                        if (inputName.equals("")) {
-                            Toast.makeText(Activity_Site.this, "书架名不能为空", Toast.LENGTH_LONG).show();
-                        } else {
-                            if (sql.add_site(db,inputName)>0){
-                                updateLv(-1);
-                                Toast.makeText(Activity_Site.this, inputName+"添加成功", Toast.LENGTH_LONG).show();
-                            }else {
-                                Toast.makeText(Activity_Site.this, inputName+"添加失败", Toast.LENGTH_LONG).show();
-                            }
-                        }
+                        shelvesViewModel.updateInputShelfName(inputServer.getText().toString());
+                        shelvesViewModel.addOneShelf();
                     }
                 });
                 //给对话框格式设置按钮并设置其点击方法
@@ -145,18 +160,8 @@ public class Activity_Site extends Activity {
                 builder.setView(inputServer);
                 builder.setPositiveButton("确定" , new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        String inputName = inputServer.getText().toString();
-                        if (inputName.equals("")) {
-                            Toast.makeText(Activity_Site.this, "书架名不能为空", Toast.LENGTH_LONG).show();
-                        } else {
-                            Csite.setSite(inputName);
-                            if (sql.update_site(db,Csite)>0){
-                                updateLv(-1);
-                                Toast.makeText(Activity_Site.this, inputName+"修改成功", Toast.LENGTH_LONG).show();
-                            }else {
-                                Toast.makeText(Activity_Site.this, inputName+"修改失败", Toast.LENGTH_LONG).show();
-                            }
-                        }
+                        shelvesViewModel.updateInputShelfName(inputServer.getText().toString());
+                        shelvesViewModel.updateOneShelfById();
                     }
                 });
                 //给对话框格式设置按钮并设置其点击方法
@@ -183,12 +188,7 @@ public class Activity_Site extends Activity {
                 adBd1.setPositiveButton("确定", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        if (sql.sc_site(db,Csite)>-1){
-                            Toast.makeText(Activity_Site.this, Csite.getSite()+"删除成功", Toast.LENGTH_LONG).show();
-                            updateLv(-1);
-                        }else {
-                            Toast.makeText(Activity_Site.this, Csite.getSite()+"删除失败", Toast.LENGTH_LONG).show();
-                        }
+                        shelvesViewModel.deleteOneShelf();
                     }
                 });
                 //给对话框格式设置按钮并设置其点击方法
@@ -311,6 +311,7 @@ public class Activity_Site extends Activity {
             }
             sites.get(i).setP(true);
             Csite=sites.get(i);
+            shelvesViewModel.updateSelectedShelfId(Csite.getId());
         }
         //实例化适配器   上下文 ，数据链表;
         spq = new site_spq(this,sites);

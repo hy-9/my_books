@@ -17,7 +17,7 @@
             android:name=".activity.Activity_Search"
             android:exported="false" />
         <activity
-            android:name=".activity.Activity_Site"
+            android:name=".activity.shelves.Activity_Site"
             android:exported="false" />
         <activity
             android:name=".activity.Activity_Book_Particulars"
