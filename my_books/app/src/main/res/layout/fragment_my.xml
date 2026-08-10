@@ -133,7 +133,7 @@
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_marginLeft="10dp"
-            android:text="地址"
+            android:text="书架"
             android:textSize="30dp"
             android:textStyle="bold" />
 

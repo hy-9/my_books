@@ -18,7 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.my_books.activity.Activity_Search;
-import com.example.my_books.activity.Activity_Site;
+import com.example.my_books.activity.shelves.Activity_Site;
 import com.example.my_books.activity.register.Activity_register;
 import com.example.my_books.R;
 import com.example.my_books.model.site;

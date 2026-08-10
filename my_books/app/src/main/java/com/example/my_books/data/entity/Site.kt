@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "site")
 data class Site(
     @PrimaryKey
-    var id: Int? = 0,
+    var id: Int? = null,
     var user_id: Int? = 0,
     var site: String? = "",
     // 非数据库字段：用于存储该书架下的书籍数量
