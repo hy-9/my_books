@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.homeFragment"
+    tools:context=".fragment.homeFragment.homeFragment"
     android:background="@color/grey">
     <RelativeLayout
         android:layout_width="wrap_content"
