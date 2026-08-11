@@ -23,6 +23,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.my_books.activity.Activity_Search;
+import com.example.my_books.activity.compose.Activity_compose;
 import com.example.my_books.activity.shelves.Activity_Site;
 import com.example.my_books.activity.register.Activity_register;
 import com.example.my_books.R;
@@ -45,7 +46,7 @@ import java.util.List;
  * create an instance of this fragment.
  */
 public class myFragment extends Fragment {
-    RelativeLayout register, user, function, logout, like, my_site;
+    RelativeLayout register, user, function, logout, like, my_site, settings;
     TextView site, user_name, user_id, book_amount, site_amount;
     sql sql;
     SQLiteDatabase db;
@@ -165,6 +166,13 @@ public class myFragment extends Fragment {
                 startActivity(intent);//执行跳转
             }
         });
+        settings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), Activity_compose.class);//设置跳转
+                startActivity(intent);//执行跳转
+            }
+        });
         //书架详情
         site_s.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -225,6 +233,7 @@ public class myFragment extends Fragment {
         site_amount = view.findViewById(R.id.my_xq_site);
         book_amount = view.findViewById(R.id.my_xq_books);
         like = view.findViewById(R.id.my_like);
+        settings = view.findViewById(R.id.my_set);
         my_site = view.findViewById(R.id.my_site);
     }
 
