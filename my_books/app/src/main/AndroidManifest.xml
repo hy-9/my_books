@@ -14,6 +14,9 @@
         tools:ignore="HardcodedDebugMode">
 
         <activity
+            android:name=".activity.compose.Activity_compose"
+            android:exported="false" />
+        <activity
             android:name=".activity.Activity_Search"
             android:exported="false" />
         <activity

@@ -17,8 +17,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.my_books.activity.register.Activity_register;
-import com.example.my_books.fragment.homeFragment;
-import com.example.my_books.fragment.myFragment;
+import com.example.my_books.fragment.homeFragment.homeFragment;
+import com.example.my_books.fragment.myFragment.myFragment;
 import com.example.my_books.model.user;
 import com.example.my_books.sql.sql;
 

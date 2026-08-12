@@ -53,6 +53,7 @@ abstract class AppDatabase : RoomDatabase() {
         @Volatile
         private var INSTANCE: AppDatabase? = null
         // 双重检查锁（DCL）实现线程安全的单例
+        @JvmStatic
         fun getInstance(context: Context): AppDatabase {
             return INSTANCE ?: synchronized(this) {
                 // 构建数据库实例，建议使用 applicationContext 防止内存泄漏

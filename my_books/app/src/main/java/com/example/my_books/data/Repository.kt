@@ -91,6 +91,13 @@ class Repository(private val userDao: UserDao,
         }catch (e: Exception){
             SimpleResponse(false,"错误${e.message}")
         }
-
+    }
+    suspend fun deleteCurrentUser(): SimpleResponse{
+        return try {
+            currentUserDao.deleteCurrentUser()
+            SimpleResponse(true,"已退出登录")
+        }catch (e: Exception){
+            SimpleResponse(false,"错误${e.message}")
+        }
     }
 }

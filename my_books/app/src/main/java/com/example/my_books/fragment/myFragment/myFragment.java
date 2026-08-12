@@ -1,12 +1,17 @@
-package com.example.my_books.fragment;
+package com.example.my_books.fragment.myFragment;
 
 import android.app.AlertDialog;
+import android.app.Application;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
+import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelStoreOwner;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,9 +23,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.my_books.activity.Activity_Search;
+import com.example.my_books.activity.compose.Activity_compose;
 import com.example.my_books.activity.shelves.Activity_Site;
 import com.example.my_books.activity.register.Activity_register;
 import com.example.my_books.R;
+import com.example.my_books.activity.shelves.ShelvesViewModel;
+import com.example.my_books.common.ViewModelFactory;
+import com.example.my_books.data.Repository;
+import com.example.my_books.data.database.AppDatabase;
+import com.example.my_books.databinding.ActivitySiteBinding;
+import com.example.my_books.databinding.FragmentMyBinding;
 import com.example.my_books.model.site;
 import com.example.my_books.model.user;
 import com.example.my_books.common.site_spq;
@@ -34,8 +46,8 @@ import java.util.List;
  * create an instance of this fragment.
  */
 public class myFragment extends Fragment {
-    RelativeLayout register,user,function,logout,like,my_site;
-    TextView site,user_name,user_id,book_amount,site_amount;
+    RelativeLayout register, user, function, logout, like, my_site, settings;
+    TextView site, user_name, user_id, book_amount, site_amount;
     sql sql;
     SQLiteDatabase db;
     ListView site_s;
@@ -77,7 +89,7 @@ public class myFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        isCreated=true;
+        isCreated = true;
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -87,11 +99,24 @@ public class myFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view =inflater.inflate(R.layout.fragment_my, container, false);
-
+        Context context = requireContext().getApplicationContext();
+        AppDatabase appDatabase = AppDatabase.Companion.getInstance(context);
+        Repository repository = new Repository(appDatabase.userDao(), appDatabase.currentUserDao(), appDatabase.shelvesDao());
+        ViewModelFactory factory = new ViewModelFactory(repository);
+        MyFragmentViewModel myFragmentViewModel = new ViewModelProvider((ViewModelStoreOwner) this, factory).get(MyFragmentViewModel.class);
+        FragmentMyBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_my, container, false);
+        binding.setViewModel(myFragmentViewModel);
+        binding.setLifecycleOwner(this);
+        View view = inflater.inflate(R.layout.fragment_my, container, false);
         initViews(view);//初始化控件
         initViews();
-
+        myFragmentViewModel.getMyFragmentResultLiveData().observe(getViewLifecycleOwner(), result -> {
+            if (result.getResult()){
+                Intent intent = new Intent(getActivity(), Activity_register.class);
+                startActivity(intent);
+            }
+            Toast.makeText(context, result.getMessage().toString(), Toast.LENGTH_SHORT).show();
+        });
         //登录
         register.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,16 +130,13 @@ public class myFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 AlertDialog aldg1;//声明一个对话框
-                AlertDialog.Builder adBd1=new AlertDialog.Builder(getContext());//实例化一个对话框格式
+                AlertDialog.Builder adBd1 = new AlertDialog.Builder(getContext());//实例化一个对话框格式
                 adBd1.setMessage("确定退出当前登录吗？");//给对话框格式设置文本
                 //给对话框格式设置按钮并设置其点击方法
                 adBd1.setPositiveButton("确定", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        sql.scbj(db);
-                        Toast.makeText(getContext(), "退出登录成功", Toast.LENGTH_LONG).show();
-                        Intent intent = new Intent(getActivity(),Activity_register.class);
-                        startActivity(intent);
+                        myFragmentViewModel.logout();
                     }
                 });
                 //给对话框格式设置按钮并设置其点击方法
@@ -123,7 +145,7 @@ public class myFragment extends Fragment {
                     public void onClick(DialogInterface dialog, int which) {
                     }
                 });
-                aldg1=adBd1.create();//将对话框格式绑定到对话框
+                aldg1 = adBd1.create();//将对话框格式绑定到对话框
                 aldg1.show();//生成对话框
             }
         });
@@ -139,8 +161,15 @@ public class myFragment extends Fragment {
         like.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(getContext(), Activity_Search.class);//设置跳转
-                intent.putExtra("S",3);
+                Intent intent = new Intent(getContext(), Activity_Search.class);//设置跳转
+                intent.putExtra("S", 3);
+                startActivity(intent);//执行跳转
+            }
+        });
+        settings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), Activity_compose.class);//设置跳转
                 startActivity(intent);//执行跳转
             }
         });
@@ -148,9 +177,9 @@ public class myFragment extends Fragment {
         site_s.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent=new Intent(getContext(),Activity_Search.class);//设置跳转
-                intent.putExtra("S",4);
-                intent.putExtra("S_s",position);
+                Intent intent = new Intent(getContext(), Activity_Search.class);//设置跳转
+                intent.putExtra("S", 4);
+                intent.putExtra("S_s", position);
                 startActivity(intent);//执行跳转
             }
         });
@@ -158,11 +187,12 @@ public class myFragment extends Fragment {
         return view;
 
     }
+
     //初始化控件
-    private void initViews(){
-        sql=new sql(getContext());
+    private void initViews() {
+        sql = new sql(getContext());
         db = sql.getReadableDatabase();//得到的是SQLiteDatabase对象
-        if (sql.queryLoginUser(db).getId()==0){
+        if (sql.queryLoginUser(db).getId() == 0) {
             //设置可见属性为显示
             register.setVisibility(View.VISIBLE);
             //设置属性为隐藏
@@ -170,54 +200,59 @@ public class myFragment extends Fragment {
             site.setVisibility(View.GONE);
             function.setVisibility(View.GONE);
             my_site.setVisibility(View.GONE);
-        }else {
+        } else {
             register.setVisibility(View.GONE);
             user.setVisibility(View.VISIBLE);
             site.setVisibility(View.VISIBLE);
             function.setVisibility(View.VISIBLE);
             my_site.setVisibility(View.VISIBLE);
         }
-        sites=sql.cxbj_site_quantity(db);
+        sites = sql.cxbj_site_quantity(db);
         //实例化适配器   上下文 ，数据链表;
-        spq = new site_spq(getContext(),sites);
+        spq = new site_spq(getContext(), sites);
         //根据适配器生成书
         site_s.setAdapter(spq);
-        int[] a=sql.cxbj_book_site_amount(db);
-        u= sql.queryLoginUser(db);
+        int[] a = sql.cxbj_book_site_amount(db);
+        u = sql.queryLoginUser(db);
         user_name.setText(u.getUser_name());
-        user_id.setText("用户id:"+u.getId());
-        site_amount.setText("书架数"+a[1]+"个");
-        book_amount.setText("总藏书"+a[0]+"本");
+        user_id.setText("用户id:" + u.getId());
+        site_amount.setText("书架数" + a[1] + "个");
+        book_amount.setText("总藏书" + a[0] + "本");
     }
-    private void initViews(View view){
 
-        register=view.findViewById(R.id.my_register);
-        user=view.findViewById(R.id.my_dingdan);
-        site=view.findViewById(R.id.my_site_text);
-        function=view.findViewById(R.id.my_else);
-        logout=view.findViewById(R.id.my_logout);
-        site_s=view.findViewById(R.id.my_site_lv);
-        user_name=view.findViewById(R.id.my_xq_yhm);
-        user_id=view.findViewById(R.id.my_id);
-        site_amount=view.findViewById(R.id.my_xq_site);
-        book_amount=view.findViewById(R.id.my_xq_books);
-        like=view.findViewById(R.id.my_like);
-        my_site=view.findViewById(R.id.my_site);
+    private void initViews(View view) {
+
+        register = view.findViewById(R.id.my_register);
+        user = view.findViewById(R.id.my_dingdan);
+        site = view.findViewById(R.id.my_site_text);
+        function = view.findViewById(R.id.my_else);
+        logout = view.findViewById(R.id.my_logout);
+        site_s = view.findViewById(R.id.my_site_lv);
+        user_name = view.findViewById(R.id.my_xq_yhm);
+        user_id = view.findViewById(R.id.my_id);
+        site_amount = view.findViewById(R.id.my_xq_site);
+        book_amount = view.findViewById(R.id.my_xq_books);
+        like = view.findViewById(R.id.my_like);
+        settings = view.findViewById(R.id.my_set);
+        my_site = view.findViewById(R.id.my_site);
     }
+
     //每次被位于顶端时调用
     @Override
     public void onResume() {
         initViews();
         super.onResume();
     }
-    private boolean isCreated=false;
+
+    private boolean isCreated = false;
+
     //碎片移动时调用
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
-        if (!isCreated){
+        if (!isCreated) {
             return;
-        }else {
+        } else {
         }
     }
 }
