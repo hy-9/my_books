@@ -47,7 +47,7 @@ android {
     }
     // 必须指定 Compose 编译器版本
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.2.0-beta01"
+        kotlinCompilerExtensionVersion = "1.2.0-rc02"
     }
 }
 

@@ -24,6 +24,7 @@ import android.widget.Toast;
 
 import com.example.my_books.activity.Activity_Search;
 import com.example.my_books.activity.compose.Activity_compose;
+import com.example.my_books.activity.compose.Routes;
 import com.example.my_books.activity.shelves.Activity_Site;
 import com.example.my_books.activity.register.Activity_register;
 import com.example.my_books.R;
@@ -170,6 +171,7 @@ public class myFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), Activity_compose.class);//设置跳转
+                intent.putExtra("route_name", Routes.SETTINGS.getName());
                 startActivity(intent);//执行跳转
             }
         });
