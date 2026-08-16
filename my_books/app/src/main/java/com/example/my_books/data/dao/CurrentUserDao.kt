@@ -19,4 +19,6 @@ interface CurrentUserDao {
     // 删除本机用户数据（原 scbj 方法）
     @Query("DELETE FROM user_use")
     suspend fun deleteCurrentUser()
+    @Query("SELECT * FROM user_use")
+    suspend fun getAllCurrentUsers(): List<CurrentUser>
 }

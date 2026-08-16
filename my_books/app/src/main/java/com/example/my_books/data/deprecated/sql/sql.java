@@ -1,4 +1,4 @@
-package com.example.my_books.sql;
+package com.example.my_books.data.deprecated.sql;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -8,9 +8,9 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
-import com.example.my_books.model.book;
-import com.example.my_books.model.site;
-import com.example.my_books.model.user;
+import com.example.my_books.data.deprecated.model.book;
+import com.example.my_books.data.deprecated.model.site;
+import com.example.my_books.data.deprecated.model.user;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -28,7 +28,7 @@ public class sql extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("create table "+ ALL_USERS +" (id INTEGER PRIMARY KEY AUTOINCREMENT ,user_name TEXT,password TEXT)");
-        db.execSQL("create table "+ CURRENT_USER +" (id INTEGER ,user_name TEXT,password TEXT)");
+        db.execSQL("create table "+ CURRENT_USER +" (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT ,user_name TEXT,password TEXT)");
         db.execSQL("create table "+ SITE +" (id INTEGER PRIMARY KEY AUTOINCREMENT,user_id INTEGER,site TEXT)");
         //1.名著，2.小说，3.科幻，4.知识，5.历史，6.哲学
         db.execSQL("create table "+ BOOK +" (id INTEGER PRIMARY KEY AUTOINCREMENT ,user_id INTEGER,book_name TEXT,author TEXT,nationality TEXT,king INTEGER,comment TEXT,site INTEGER,date TEXT,likes INTEGER)");
