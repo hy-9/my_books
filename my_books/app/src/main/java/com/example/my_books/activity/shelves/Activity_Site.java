@@ -1,6 +1,5 @@
 package com.example.my_books.activity.shelves;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -27,17 +26,15 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelStoreOwner;
 
 import com.example.my_books.R;
-import com.example.my_books.activity.Activity_Search;
-import com.example.my_books.activity.register.RegisterViewModel;
+import com.example.my_books.activity.search.Activity_Search;
 import com.example.my_books.common.ViewModelFactory;
 import com.example.my_books.data.Repository;
 import com.example.my_books.data.database.AppDatabase;
-import com.example.my_books.databinding.ActivityRegisterBinding;
 import com.example.my_books.databinding.ActivitySiteBinding;
-import com.example.my_books.model.book;
-import com.example.my_books.model.site;
+import com.example.my_books.data.deprecated.model.book;
+import com.example.my_books.data.deprecated.model.site;
 import com.example.my_books.common.site_spq;
-import com.example.my_books.sql.sql;
+import com.example.my_books.data.deprecated.sql.sql;
 
 import java.util.List;
 

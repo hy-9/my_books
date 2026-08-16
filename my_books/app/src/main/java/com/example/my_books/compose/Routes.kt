@@ -1,4 +1,4 @@
-package com.example.my_books.activity.compose
+package com.example.my_books.compose
 
 object Routes {
     @JvmField

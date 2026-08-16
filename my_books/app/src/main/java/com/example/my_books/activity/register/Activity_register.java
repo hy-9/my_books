@@ -16,21 +16,14 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.my_books.R;
-import com.example.my_books.common.SimpleResponse;
 import com.example.my_books.common.ViewModelFactory;
 import com.example.my_books.data.Repository;
 import com.example.my_books.data.database.AppDatabase;
-import com.example.my_books.data.entity.User;
 import com.example.my_books.databinding.ActivityRegisterBinding;
-import com.example.my_books.model.user;
-import com.example.my_books.sql.sql;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.example.my_books.data.deprecated.sql.sql;
 
 public class Activity_register extends AppCompatActivity {
     ImageView backButton, showPasswordButton;

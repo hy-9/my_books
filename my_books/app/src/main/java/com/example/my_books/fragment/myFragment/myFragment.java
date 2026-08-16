@@ -1,7 +1,6 @@
 package com.example.my_books.fragment.myFragment;
 
 import android.app.AlertDialog;
-import android.app.Application;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -22,22 +21,20 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.my_books.activity.Activity_Search;
-import com.example.my_books.activity.compose.Activity_compose;
-import com.example.my_books.activity.compose.Routes;
+import com.example.my_books.activity.search.Activity_Search;
+import com.example.my_books.compose.Activity_compose;
+import com.example.my_books.compose.Routes;
 import com.example.my_books.activity.shelves.Activity_Site;
 import com.example.my_books.activity.register.Activity_register;
 import com.example.my_books.R;
-import com.example.my_books.activity.shelves.ShelvesViewModel;
 import com.example.my_books.common.ViewModelFactory;
 import com.example.my_books.data.Repository;
 import com.example.my_books.data.database.AppDatabase;
-import com.example.my_books.databinding.ActivitySiteBinding;
 import com.example.my_books.databinding.FragmentMyBinding;
-import com.example.my_books.model.site;
-import com.example.my_books.model.user;
+import com.example.my_books.data.deprecated.model.site;
+import com.example.my_books.data.deprecated.model.user;
 import com.example.my_books.common.site_spq;
-import com.example.my_books.sql.sql;
+import com.example.my_books.data.deprecated.sql.sql;
 
 import java.util.List;
 

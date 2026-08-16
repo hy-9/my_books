@@ -1,4 +1,4 @@
-package com.example.my_books.activity.compose.settings
+package com.example.my_books.compose.settings
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column

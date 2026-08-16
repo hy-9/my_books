@@ -1,4 +1,4 @@
-package com.example.my_books.model;
+package com.example.my_books.data.deprecated.model;
 
 public class site{
     private int id;

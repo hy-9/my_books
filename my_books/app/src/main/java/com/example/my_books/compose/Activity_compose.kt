@@ -1,8 +1,7 @@
-package com.example.my_books.activity.compose
+package com.example.my_books.compose
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 

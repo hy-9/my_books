@@ -1,4 +1,4 @@
-package com.example.my_books.activity;
+package com.example.my_books.activity.search;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -19,11 +19,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.my_books.R;
-import com.example.my_books.model.book;
-import com.example.my_books.model.site;
+import com.example.my_books.activity.particular.Activity_Book_Particulars;
+import com.example.my_books.data.deprecated.model.book;
+import com.example.my_books.data.deprecated.model.site;
 import com.example.my_books.common.shu_spq;
 import com.example.my_books.common.site_spq;
-import com.example.my_books.sql.sql;
+import com.example.my_books.data.deprecated.sql.sql;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;

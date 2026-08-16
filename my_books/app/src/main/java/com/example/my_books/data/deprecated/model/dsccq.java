@@ -1,4 +1,4 @@
-package com.example.my_books.model;
+package com.example.my_books.data.deprecated.model;
 
 import android.widget.CheckBox;
 import android.widget.ImageView;
