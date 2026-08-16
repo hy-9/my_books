@@ -21,7 +21,7 @@ import com.example.my_books.compose.Routes
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun MainTopBar(name:String,navBack:()->Unit){
+fun BaseTopBar(name:String,navBack:()->Unit){
     val currentRoute = Routes.getAllRoutes().find {
         it.name == name
     }

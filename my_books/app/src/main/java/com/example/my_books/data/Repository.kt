@@ -1,17 +1,26 @@
 package com.example.my_books.data
 
+import android.util.Log
+import com.example.my_books.common.AllData
 import com.example.my_books.common.SimpleResponse
+import com.example.my_books.data.dao.BookDao
 import com.example.my_books.data.dao.CurrentUserDao
 import com.example.my_books.data.dao.ShelvesDao
 import com.example.my_books.data.dao.UserDao
 import com.example.my_books.data.entity.CurrentUser
 import com.example.my_books.data.entity.Site
 import com.example.my_books.data.entity.User
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 
-class Repository(private val userDao: UserDao,
-                 private val currentUserDao: CurrentUserDao,
-                 private val shelvesDao: ShelvesDao
+class Repository(
+    private val userDao: UserDao,
+    private val currentUserDao: CurrentUserDao,
+    private val shelvesDao: ShelvesDao,
+    private val bookDao: BookDao
     ) {
+    private val TAG = "Repository"
     suspend fun queryAllUserByUserName(name: String): List<User> {
         return userDao.queryAllUsersByUserName(name)
     }
@@ -96,6 +105,36 @@ class Repository(private val userDao: UserDao,
         return try {
             currentUserDao.deleteCurrentUser()
             SimpleResponse(true,"已退出登录")
+        }catch (e: Exception){
+            SimpleResponse(false,"错误${e.message}")
+        }
+    }
+    suspend fun exportAllTablesData(): SimpleResponse{
+        return try {
+            val allUser = userDao.getAllUsers()
+            val allBooks = bookDao.getAllBooks()
+            val allShelves = shelvesDao.getAllShelves()
+            val allData = AllData(allUser,allBooks,allShelves)
+            val jsonValueString = Json.encodeToString(allData)
+            SimpleResponse(true,"$jsonValueString")
+        }catch (e: Exception){
+            SimpleResponse(false,"错误${e.message}")
+        }
+    }
+    suspend fun importAllTablesData(jsonString: String): SimpleResponse{
+        return try {
+            val allData = Json.decodeFromString<AllData>(jsonString)
+            allData.users.forEach {
+                userDao.insertUser(it)
+            }
+            allData.books.forEach {
+                bookDao.insertBook(it)
+            }
+            allData.shelves.forEach {
+                shelvesDao.insertShelves(it)
+            }
+            currentUserDao.deleteCurrentUser()
+            SimpleResponse(true,"导入成功")
         }catch (e: Exception){
             SimpleResponse(false,"错误${e.message}")
         }

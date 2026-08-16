@@ -73,7 +73,7 @@ public class Activity_register extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         AppDatabase appDatabase = AppDatabase.Companion.getInstance(this);
-        Repository repository = new Repository(appDatabase.userDao(), appDatabase.currentUserDao(),appDatabase.shelvesDao());
+        Repository repository = new Repository(appDatabase.userDao(), appDatabase.currentUserDao(),appDatabase.shelvesDao(),appDatabase.bookDao());
         ViewModelFactory factory = new ViewModelFactory(repository);
         RegisterViewModel registerViewModel = new ViewModelProvider(this, factory).get(RegisterViewModel.class);
         ActivityRegisterBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_register);

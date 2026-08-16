@@ -58,7 +58,7 @@ public class Activity_Site extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_site);
         AppDatabase appDatabase = AppDatabase.Companion.getInstance(this);
-        Repository repository = new Repository(appDatabase.userDao(), appDatabase.currentUserDao(),appDatabase.shelvesDao());
+        Repository repository = new Repository(appDatabase.userDao(), appDatabase.currentUserDao(),appDatabase.shelvesDao(), appDatabase.bookDao());
         ViewModelFactory factory = new ViewModelFactory(repository);
         shelvesViewModel = new ViewModelProvider((ViewModelStoreOwner) this, factory).get(ShelvesViewModel.class);
         ActivitySiteBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_site);

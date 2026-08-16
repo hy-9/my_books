@@ -2,7 +2,9 @@ package com.example.my_books.data.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import kotlinx.serialization.Serializable
 
+@Serializable
 @Entity(tableName = "user_use")
 data class CurrentUser(
     @PrimaryKey

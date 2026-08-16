@@ -99,7 +99,7 @@ public class myFragment extends Fragment {
                              Bundle savedInstanceState) {
         Context context = requireContext().getApplicationContext();
         AppDatabase appDatabase = AppDatabase.Companion.getInstance(context);
-        Repository repository = new Repository(appDatabase.userDao(), appDatabase.currentUserDao(), appDatabase.shelvesDao());
+        Repository repository = new Repository(appDatabase.userDao(), appDatabase.currentUserDao(), appDatabase.shelvesDao(),appDatabase.bookDao());
         ViewModelFactory factory = new ViewModelFactory(repository);
         MyFragmentViewModel myFragmentViewModel = new ViewModelProvider((ViewModelStoreOwner) this, factory).get(MyFragmentViewModel.class);
         FragmentMyBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_my, container, false);

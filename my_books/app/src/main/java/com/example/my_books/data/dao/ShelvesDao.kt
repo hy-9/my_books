@@ -17,4 +17,6 @@ interface ShelvesDao {
     suspend fun deleteOneShelfById(id:Int)
     @Query("UPDATE site SET site = :name WHERE id = :id")
     suspend fun updateOneShelfById(id:Int,name:String)
+    @Query("SELECT * FROM site")
+    suspend fun getAllShelves(): List<Site>
 }
