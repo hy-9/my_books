@@ -107,7 +107,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/register_1"
-                android:text="我以阅读并同意"
+                android:text="我已阅读并同意"
                 android:textSize="16dp"
                 android:layout_toRightOf="@id/register_3"
                 android:layout_centerVertical="true"/>

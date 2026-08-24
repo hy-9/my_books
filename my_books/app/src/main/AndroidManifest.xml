@@ -14,16 +14,16 @@
         tools:ignore="HardcodedDebugMode">
 
         <activity
-            android:name=".activity.compose.Activity_compose"
+            android:name=".compose.Activity_compose"
             android:exported="false" />
         <activity
-            android:name=".activity.Activity_Search"
+            android:name=".activity.search.Activity_Search"
             android:exported="false" />
         <activity
             android:name=".activity.shelves.Activity_Site"
             android:exported="false" />
         <activity
-            android:name=".activity.Activity_Book_Particulars"
+            android:name=".activity.particular.Activity_Book_Particulars"
             android:exported="false" />
         <activity
             android:name=".activity.register.Activity_register"

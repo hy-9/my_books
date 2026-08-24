@@ -21,13 +21,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.my_books.R;
-import com.example.my_books.activity.Activity_Book_Particulars;
-import com.example.my_books.activity.Activity_Search;
+import com.example.my_books.activity.particular.Activity_Book_Particulars;
+import com.example.my_books.activity.search.Activity_Search;
 import com.example.my_books.activity.register.Activity_register;
-import com.example.my_books.model.book;
-import com.example.my_books.model.site;
+import com.example.my_books.data.deprecated.model.book;
+import com.example.my_books.data.deprecated.model.site;
 import com.example.my_books.common.shu_spq;
-import com.example.my_books.sql.sql;
+import com.example.my_books.data.deprecated.sql.sql;
 
 import java.util.LinkedList;
 import java.util.List;

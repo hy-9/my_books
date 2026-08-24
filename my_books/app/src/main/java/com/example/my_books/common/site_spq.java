@@ -11,8 +11,8 @@ import android.widget.TextView;
 
 
 import com.example.my_books.R;
-import com.example.my_books.model.site;
-import com.example.my_books.model.site_ccq;
+import com.example.my_books.data.deprecated.model.site;
+import com.example.my_books.data.deprecated.model.site_ccq;
 
 import java.util.List;
 //书模板的适配器类

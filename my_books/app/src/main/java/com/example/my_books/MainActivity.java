@@ -19,8 +19,8 @@ import android.widget.TextView;
 import com.example.my_books.activity.register.Activity_register;
 import com.example.my_books.fragment.homeFragment.homeFragment;
 import com.example.my_books.fragment.myFragment.myFragment;
-import com.example.my_books.model.user;
-import com.example.my_books.sql.sql;
+import com.example.my_books.data.deprecated.model.user;
+import com.example.my_books.data.deprecated.sql.sql;
 
 import java.util.ArrayList;
 import java.util.List;

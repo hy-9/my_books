@@ -1,4 +1,4 @@
-package com.example.my_books.activity.compose.error
+package com.example.my_books.compose.error
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
